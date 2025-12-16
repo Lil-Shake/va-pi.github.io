@@ -1,0 +1,16 @@
+<svg width="1200" height="360" viewBox="0 0 1200 360" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#5dd7ff" stop-opacity="0.65"/>
+      <stop offset="100%" stop-color="#a285ff" stop-opacity="0.65"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="360" rx="22" fill="#0f141f" stroke="#1f2a3d" stroke-width="4"/>
+  <rect x="44" y="90" width="260" height="180" rx="16" fill="url(#grad2)" opacity="0.18" stroke="#243048"/>
+  <rect x="470" y="90" width="260" height="180" rx="16" fill="url(#grad2)" opacity="0.18" stroke="#243048"/>
+  <rect x="896" y="90" width="260" height="180" rx="16" fill="url(#grad2)" opacity="0.18" stroke="#243048"/>
+  <text x="174" y="185" text-anchor="middle" fill="#cdd8e9" font-family="Inter, sans-serif" font-size="22" font-weight="700">Policy</text>
+  <text x="600" y="185" text-anchor="middle" fill="#cdd8e9" font-family="Inter, sans-serif" font-size="22" font-weight="700">Variational</text>
+  <text x="1026" y="185" text-anchor="middle" fill="#cdd8e9" font-family="Inter, sans-serif" font-size="22" font-weight="700">Pixel-aware</text>
+  <text x="600" y="240" text-anchor="middle" fill="#7e8aa0" font-family="Inter, sans-serif" font-size="18">Method Placeholder Diagram</text>
+</svg>
