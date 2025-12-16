@@ -1,11 +1,71 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8">
-    <title>VA-π</title>
-  </head>
-  <body>
-    <h1>VA-π Project Page</h1>
-    <p>Coming soon.</p>
-  </body>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VA-π: Variational Policy Alignment for Pixel-Aware Autoregressive Generation</title>
+  <link rel="stylesheet" href="static/css/style.css">
+</head>
+<body>
+  <div class="page">
+    <header class="hero">
+      <h1 class="title">VA-π: Variational Policy Alignment for Pixel-Aware Autoregressive Generation</h1>
+      <div class="authors">
+        <span><a href="https://lil-shake.github.io/">Xinyao Liao*</a></span>
+        <span><a href="https://qy-h00.github.io/">Qiyuan He*†</a></span>
+        <span><a href="https://kai422.github.io/">Kai Xu</a></span>
+        <span><a href="https://scholar.google.com/citations?user=rT3hqdcAAAAJ&hl=zh-CN">Xiaoye Qu</a></span>
+        <span><a href="https://yl3800.github.io/">Yicong Li</a></span>
+        <span><a href="https://www.eric-weiwei.com/">Wei Wei</a></span>
+        <span><a href="https://www.comp.nus.edu.sg/~ayao/">Angela Yao</a></span>
+      </div>
+      <div class="affiliations">
+        <span>Huazhong University of Science &amp; Technology</span>
+        <span>National University of Singapore</span>
+      </div>
+      <div class="badges">
+        <a class="badge" href="VA-Pi.pdf" target="_blank" rel="noopener">Paper</a>
+        <a class="badge secondary" href="#">arXiv (coming soon)</a>
+        <a class="badge" href="https://github.com/Lil-Shake/VA-Pi" target="_blank" rel="noopener">Code</a>
+      </div>
+    </header>
+
+    <section class="section">
+      <h2>Abstract</h2>
+      <p>
+        VA-π introduces a variational policy alignment framework for pixel-aware autoregressive generation.
+        We bridge policy optimization with diffusion-style guidance to stabilize training, improve perceptual
+        fidelity, and reduce error accumulation across long sequences. Our approach produces consistent
+        high-frequency details while maintaining global coherence, making it applicable to photo-realistic
+        synthesis, video frame extrapolation, and controllable image editing.
+      </p>
+      <div class="teaser">
+        <img src="static/img/teaser.svg" alt="Teaser placeholder for VA-π results">
+      </div>
+    </section>
+
+    <section class="section grid">
+      <div>
+        <h2>Method</h2>
+        <p>
+          We align pixel-level likelihoods with a variational objective that directly supervises
+          the autoregressive policy. A lightweight critic provides feedback for token ordering
+          while cross-scale priors preserve structure and texture through extended rollouts.
+        </p>
+        <ul class="highlights">
+          <li>Variational policy alignment that unifies pixel-aware objectives with autoregressive decoding.</li>
+          <li>Stability through critic-guided rollouts and curriculum over spatial scales.</li>
+          <li>Generalizable to diverse downstream tasks with minimal architectural changes.</li>
+        </ul>
+      </div>
+      <div class="method">
+        <img src="static/img/method.svg" alt="Method diagram placeholder for VA-π">
+      </div>
+    </section>
+
+    <footer class="footer">
+      <span>* Equal contribution &nbsp;&nbsp; | &nbsp;&nbsp; † Corresponding author</span>
+    </footer>
+  </div>
+</body>
 </html>
