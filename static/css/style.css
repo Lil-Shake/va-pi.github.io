@@ -162,6 +162,31 @@ a:hover {
   display: block;
 }
 
+/* Figures inside the paper body (responsive) */
+.paper-figure {
+  margin: 22px 0 0;
+}
+
+.paper-figure img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.paper-figure figcaption {
+  margin-top: 10px;
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  font-size: 14px;
+  color: var(--muted-2);
+  line-height: 1.5;
+}
+
+/* Safety: any image in main column should never overflow */
+.paper-main img {
+  max-width: 100%;
+  height: auto;
+}
+
 /* TL;DR blockquote style */
 .tldr-section {
   margin: 22px auto 0;
@@ -177,6 +202,9 @@ a:hover {
   font-size: 1rem;
   line-height: 1.7;
   color: var(--text-secondary);
+  text-align: justify;
+  text-justify: inter-word;
+  hyphens: auto;
 }
 
 .tldr-section p strong,
@@ -219,6 +247,17 @@ a:hover {
   margin: 0 0 14px 0;
   color: var(--text-secondary);
   font-size: 18px;
+  text-align: justify;
+  text-justify: inter-word;
+  hyphens: auto;
+}
+
+/* Match bold styling in body paragraphs to TL;DR bold */
+.paper-section p b,
+.paper-section p strong {
+  color: var(--accent);
+  font-weight: 700;
+  letter-spacing: -0.01em;
 }
 
 .section-note {
