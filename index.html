@@ -266,15 +266,6 @@
       <section class="paper-section" id="quant-results">
         <h2>More Qualitative Results</h2>
 
-        <h3>Visualization of learning curves</h3>
-        <p>
-          We visualize learning curves during reinforcement learning fine-tuning. The reward increases steadily across settings,
-          indicating consistent policy improvement under VA-π across generators of different scales and modalities.
-        </p>
-        <div class="figure-placeholder" aria-label="Learning curves figure placeholder">
-          <div class="placeholder-note">[Add figure: learning curves (e.g., learning_curves_all.png)]</div>
-        </div>
-
         <h3>Class-to-image generation (ImageNet-1K)</h3>
         <p>
           We provide additional qualitative comparisons on C2I generation across ImageNet-1K classes.
@@ -287,14 +278,6 @@
             C2I qualitative comparison (ImageNet-1K, CFG = 1.0): LlamaGen-XXL vs post-train tokenizer (PT) vs STE post-train AR vs VA-π.
           </figcaption>
         </figure>
-
-        <p class="section-note">
-          <b>Post-train tokenizer observation.</b> Decoder-only fine-tuning tends to over-smooth textures: despite lower reconstruction loss,
-          long tuning can degrade metrics (e.g., <b>FID 14.36 → 22.99</b>, <b>IS 86.55 → 72.49</b>), highlighting the limitation of decoder-only tuning.
-        </p>
-        <div class="figure-placeholder" aria-label="Post-train tokenizer qualitative figure placeholder">
-          <div class="placeholder-note">[Add figure: post-train tokenizer qualitative (e.g., vis-pt.png)]</div>
-        </div>
 
         <div class="qual-grid" aria-label="Additional ImageNet class qualitative comparisons">
           <figure class="paper-figure">
