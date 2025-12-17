@@ -26,110 +26,116 @@
   <script defer src="static/js/main.js"></script>
 </head>
 <body>
-  <div class="page" id="top">
-    <header class="hero">
-      <h1 class="title">VA-π: Variational Policy Alignment for Pixel-Aware Autoregressive Generation</h1>
+  <div class="paper" id="top">
+    <!-- Sticky TOC (desktop) -->
+    <nav class="toc navlinks" aria-label="Table of contents">
+      <div class="toc-title">Contents</div>
+      <a href="#overview">Overview</a>
+      <a href="#observations">Observations</a>
+      <a href="#quant-results-ablation">Quantitative Results (C2I/T2I, Ablation)</a>
+      <a href="#quant-results">Quantitative Results (C2I/T2I)</a>
+    </nav>
 
-      <div class="authors">
-        <span><a href="https://lil-shake.github.io/" target="_blank" rel="noopener">Xinyao Liao</a><sup>*1</sup></span>
-        <span><a href="https://qy-h00.github.io/" target="_blank" rel="noopener">Qiyuan He</a><sup>*†2</sup></span>
-        <span><a href="https://kai422.github.io/" target="_blank" rel="noopener">Kai Xu</a><sup>2</sup></span>
-        <span><a href="https://scholar.google.com/citations?user=rT3hqdcAAAAJ&hl=zh-CN" target="_blank" rel="noopener">Xiaoye Qu</a><sup>1</sup></span>
-        <span><a href="https://yl3800.github.io/" target="_blank" rel="noopener">Yicong Li</a><sup>2</sup></span>
-        <span><a href="https://www.eric-weiwei.com/" target="_blank" rel="noopener">Wei Wei</a><sup>1</sup></span>
-        <span><a href="https://www.comp.nus.edu.sg/~ayao/" target="_blank" rel="noopener">Angela Yao</a><sup>2</sup></span>
-      </div>
+    <header class="paper-header">
+      <div class="paper-header-inner">
+        <h1 class="paper-title">VA-π: Variational Policy Alignment for Pixel-Aware Autoregressive Generation</h1>
 
-      <div class="affiliations">
-        <span><sup>1</sup>Huazhong University of Science and Technology</span>
-        <span><sup>2</sup>National University of Singapore</span>
-      </div>
-
-      <!-- <div class="contributions">
-        <span><sup>*</sup>Equal contribution</span>
-        <span><sup>†</sup>Corresponding author</span>
-      </div> -->
-
-      <div class="badges" aria-label="Project links">
-        <!-- <a class="badge disabled" href="#" aria-disabled="true" title="Add VA-Pi.pdf to enable">Paper (PDF)</a> -->
-        <a class="badge secondary disabled" href="#" aria-disabled="true">arXiv (coming soon)</a>
-        <a class="badge" href="https://github.com/Lil-Shake/VA-Pi" target="_blank" rel="noopener">Code</a>
-      </div>
-
-      <!-- TL;DR (styled like iREPA) -->
-      <div class="tldr-section">
-        <p><span class="tldr-label">TL;DR:</span> How should visual autoregressive models be optimized?
-        <b>Token space or pixel space? We argue the answer is pixel space.</p>
-          We propose <b>VA-π</b>, a lightweight post-training framework that directly optimizes <b>visual AR models</b> with a principled <b>pixel-space objective</b>, solved by introducing <b>evidence lower bound (ELBO)</b> that unifies pixel reconstruction and autoregressive modeling. To optimize under the discrete token space, VA-π introduces a <b>reinforcement-based alignment strategy</b> that treats the AR generator as a policy, uses pixel-space reconstruction quality as its intrinsic reward and Next Token Prediction (NTP) loss with noisy context as regulizer.</p>
-      </div>
-
-      <!-- Method (highlights + teaser, in header like iREPA) -->
-      <section class="section grid hero-method" id="method">
-        <div class="hero-method-left">
-          <div class="method-highlights" aria-label="Method highlights">
-            <div class="method-highlight">
-              <div>
-                <div class="method-highlight-title">Variational alignment objective</div>
-                <div class="method-highlight-desc">An ELBO-style objective that unifies pixel reconstruction and autoregressive modeling.</div>
-              </div>
-            </div>
-            <div class="method-highlight">
-              <div>
-                <div class="method-highlight-title">Pixel-aware intrinsic reward</div>
-                <div class="method-highlight-desc">Use pixel-space reconstruction quality as intrinsic feedback for discrete token sequences.</div>
-              </div>
-            </div>
-            <div class="method-highlight">
-              <div>
-                <div class="method-highlight-title">Lightweight post-training</div>
-                <div class="method-highlight-desc">No tokenizer retraining and no external reward model; keep the AR distribution stable with NTP regularization.</div>
-              </div>
-            </div>
-          </div>
+        <div class="paper-authors">
+          <a href="https://lil-shake.github.io/" target="_blank" rel="noopener">Xinyao Liao</a><sup>*1</sup>,
+          <a href="https://qy-h00.github.io/" target="_blank" rel="noopener">Qiyuan He</a><sup>*†2</sup>,
+          <a href="https://kai422.github.io/" target="_blank" rel="noopener">Kai Xu</a><sup>2</sup>,
+          <a href="https://scholar.google.com/citations?user=rT3hqdcAAAAJ&hl=zh-CN" target="_blank" rel="noopener">Xiaoye Qu</a><sup>1</sup>,
+          <a href="https://yl3800.github.io/" target="_blank" rel="noopener">Yicong Li</a><sup>2</sup>,
+          <a href="https://www.eric-weiwei.com/" target="_blank" rel="noopener">Wei Wei</a><sup>1</sup>,
+          <a href="https://www.comp.nus.edu.sg/~ayao/" target="_blank" rel="noopener">Angela Yao</a><sup>2</sup>
         </div>
 
-        <figure class="teaser hero-method-teaser" aria-label="Teaser figure">
+        <div class="paper-affiliations">
+          <span><sup>1</sup>Huazhong University of Science and Technology</span>
+          <span><sup>2</sup>National University of Singapore</span>
+        </div>
+
+        <div class="paper-contrib">
+          <span><sup>*</sup>Equal contribution</span>
+          <span><sup>†</sup>Corresponding author</span>
+        </div>
+
+        <div class="paper-badges" aria-label="Project links">
+          <a class="badge secondary disabled" href="#" aria-disabled="true">arXiv (coming soon)</a>
+          <a class="badge" href="https://github.com/Lil-Shake/VA-Pi" target="_blank" rel="noopener">Code</a>
+        </div>
+
+        <figure class="paper-teaser" aria-label="Teaser">
           <img src="static/img/vis-c2i-t2i_00.png" alt="VA-π teaser">
         </figure>
-      </section>
+
+        <div class="tldr-section">
+          <p><span class="tldr-label">TL;DR:</span> How should visual autoregressive models be optimized?
+            <b>Token space or pixel space?</b> We argue the answer is pixel space.
+            We propose <b>VA-π</b>, a lightweight post-training framework that directly optimizes <b>visual AR models</b> with a principled <b>pixel-space objective</b>, solved by introducing <b>evidence lower bound (ELBO)</b> that unifies pixel reconstruction and autoregressive modeling.
+            To optimize under the discrete token space, VA-π introduces a <b>reinforcement-based alignment strategy</b> that treats the AR generator as a policy, uses pixel-space reconstruction quality as its intrinsic reward and Next Token Prediction (NTP) loss with noisy context as regulizer.
+          </p>
+        </div>
+      </div>
     </header>
 
-    <main id="main">
-      <section class="section" id="resources">
-        <h2>Resources</h2>
-        <div class="cards">
-          <div class="card">
-            <div class="card-title">Code</div>
-            <div class="card-body">
-              The full implementation and training scripts are available on GitHub.
-              <div class="card-actions">
-                <a class="badge" href="https://github.com/Lil-Shake/VA-Pi" target="_blank" rel="noopener">Open repository</a>
-              </div>
-            </div>
-          </div>
-          <div class="card">
-            <div class="card-title">Release</div>
-            <div class="card-body">
-              <ul class="compact">
-                <li><strong>03/2025</strong>: Code is publicly available.</li>
-              </ul>
-            </div>
-          </div>
+    <main class="paper-main" id="main">
+      <section class="paper-section" id="overview">
+        <h2>Overview</h2>
+        <p>
+          <!-- TODO: replace with final paper overview -->
+          VA-π is a lightweight post-training framework for visual autoregressive (AR) models that optimizes a principled pixel-space objective via a variational formulation (ELBO) and a reinforcement-based alignment strategy.
+        </p>
+        <div class="figure-placeholder" aria-label="Overview figure placeholder">
+          <div class="placeholder-note">[Place overview figure / method diagram here]</div>
         </div>
-
-        <details class="details">
-          <summary>Quickstart (commands)</summary>
-          <div class="details-body">
-            <pre class="codeblock"><code>git clone https://github.com/Lil-Shake/VA-Pi
-cd VA-Pi</code></pre>
-            <p class="note">
-              For full installation, training, and evaluation instructions, see the repository README.
-            </p>
-          </div>
-        </details>
       </section>
 
-      <section class="section" id="citation">
+      <section class="paper-section" id="observations">
+        <h2>Observations</h2>
+
+        <h3 id="obs-alignment-to-pixel-space">1. Alignment to Pixel Space</h3>
+        <p>
+          <!-- TODO: replace with final text -->
+          We analyze why optimizing AR models purely in token space can be misaligned with pixel-space quality, and motivate pixel-space supervision.
+        </p>
+        <div class="figure-placeholder" aria-label="Observation 1 figure placeholder">
+          <div class="placeholder-note">[Place figures / plots for “Alignment to Pixel Space” here]</div>
+        </div>
+
+        <h3 id="obs-better-than-naive">2. VA-π is better than naive post-train</h3>
+        <p>
+          <!-- TODO: replace with final text -->
+          We compare VA-π with naive post-training baselines, showing more stable optimization and improved pixel-space fidelity.
+        </p>
+        <div class="figure-placeholder" aria-label="Observation 2 figure placeholder">
+          <div class="placeholder-note">[Place comparisons vs naive post-train here]</div>
+        </div>
+      </section>
+
+      <section class="paper-section" id="quant-results-ablation">
+        <h2>Quantitative Results (C2I/T2I, Ablation Study)</h2>
+        <p class="section-note">
+          <!-- TODO -->
+          Report ablations for both class-to-image (C2I) and text-to-image (T2I) settings.
+        </p>
+        <div class="table-placeholder" aria-label="Ablation tables placeholder">
+          <div class="placeholder-note">[Place C2I + T2I ablation tables here]</div>
+        </div>
+      </section>
+
+      <section class="paper-section" id="quant-results">
+        <h2>Quantitative Results (C2I/T2I)</h2>
+        <p class="section-note">
+          <!-- TODO -->
+          Main quantitative results for both C2I and T2I benchmarks.
+        </p>
+        <div class="table-placeholder" aria-label="Main results tables placeholder">
+          <div class="placeholder-note">[Place C2I + T2I main results tables/plots here]</div>
+        </div>
+      </section>
+
+      <section class="paper-section" id="citation">
         <h2>Citation</h2>
         <p class="note">Update the BibTeX below once the paper/arXiv entry is finalized.</p>
         <div class="codebox">
@@ -146,10 +152,6 @@ cd VA-Pi</code></pre>
         </div>
       </section>
     </main>
-
-    <footer class="footer">
-      <span><sup>*</sup> Equal contribution &nbsp;&nbsp; | &nbsp;&nbsp; <sup>†</sup> Corresponding author</span>
-    </footer>
   </div>
 </body>
 </html>

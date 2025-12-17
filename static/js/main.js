@@ -101,31 +101,6 @@
   disableDisabledLinks();
   setupCopyButtons();
   setupActiveSectionNav();
-
-  // Fit hero teaser height to left highlights (desktop only)
-  const fitHeroTeaserHeight = () => {
-    const method = document.getElementById('method');
-    if (!method) return;
-
-    const left = method.querySelector('.hero-method-left');
-    const teaser = method.querySelector('.hero-method-teaser');
-    if (!left || !teaser) return;
-
-    // Mobile: let it flow naturally (grid becomes 1 column at <= 860px)
-    if (window.innerWidth <= 860) {
-      teaser.style.height = '';
-      return;
-    }
-
-    const leftH = Math.ceil(left.getBoundingClientRect().height);
-    if (leftH > 0) teaser.style.height = `${leftH}px`;
-  };
-
-  // Run after layout settles
-  const scheduleFit = () => window.requestAnimationFrame(fitHeroTeaserHeight);
-  window.addEventListener('load', scheduleFit, { passive: true });
-  window.addEventListener('resize', scheduleFit, { passive: true });
-  scheduleFit();
 })();
 
 
