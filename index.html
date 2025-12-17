@@ -31,8 +31,8 @@
       <h1 class="title">VA-π: Variational Policy Alignment for Pixel-Aware Autoregressive Generation</h1>
 
       <div class="authors">
-        <span><a href="https://lil-shake.github.io/" target="_blank" rel="noopener">Xinyao Liao</a><sup>*</sup><sup>1</sup></span>
-        <span><a href="https://qy-h00.github.io/" target="_blank" rel="noopener">Qiyuan He</a><sup>*</sup><sup>†</sup><sup>2</sup></span>
+        <span><a href="https://lil-shake.github.io/" target="_blank" rel="noopener">Xinyao Liao</a><sup>*1</sup></span>
+        <span><a href="https://qy-h00.github.io/" target="_blank" rel="noopener">Qiyuan He</a><sup>*†2</sup></span>
         <span><a href="https://kai422.github.io/" target="_blank" rel="noopener">Kai Xu</a><sup>2</sup></span>
         <span><a href="https://scholar.google.com/citations?user=rT3hqdcAAAAJ&hl=zh-CN" target="_blank" rel="noopener">Xiaoye Qu</a><sup>1</sup></span>
         <span><a href="https://yl3800.github.io/" target="_blank" rel="noopener">Yicong Li</a><sup>2</sup></span>
@@ -55,13 +55,32 @@
         <a class="badge secondary disabled" href="#" aria-disabled="true">arXiv (coming soon)</a>
         <a class="badge" href="https://github.com/Lil-Shake/VA-Pi" target="_blank" rel="noopener">Code</a>
       </div>
-    </header>
 
-    <main id="main">
-      <!-- TL;DR -->
+      <!-- TL;DR (styled like iREPA) -->
       <div class="tldr-section">
         <p><span class="tldr-label">TL;DR:</span> We propose <b>VA-π</b>, a lightweight post-training framework that directly optimizes <b>visual AR models</b> with a principled <b>pixel-space objective</b>, solved by introducing <b>evidence lower bound (ELBO)</b> that unifies pixel reconstruction and autoregressive modeling. To optimize under the discrete token space, VA-π introduces a <b>reinforcement-based alignment strategy</b> that treats the AR generator as a policy, uses pixel-space reconstruction quality as its intrinsic reward and Next Token Prediction (NTP) loss with noisy context as regulizer.</p>
       </div>
+    </header>
+
+    <main id="main">
+      <section class="section grid" id="">
+        <div>
+          <h2>Method</h2>
+          <p>
+            We align pixel-level likelihoods with a variational objective that directly supervises the autoregressive policy.
+            Pixel-space reconstruction quality provides intrinsic feedback for discrete token sequences, while the ELBO regularizer
+            maintains distributional consistency.
+          </p>
+          <ul class="highlights">
+            <li>Variational alignment objective that unifies pixel reconstruction and autoregressive modeling.</li>
+            <li>Pixel-aware reward without expensive free-running sampling.</li>
+            <li>Lightweight post-training: no tokenizer retraining, no external reward model.</li>
+          </ul>
+        </div>
+        <figure class="method">
+          <img src="static/img/method.svg" alt="VA-π method diagram">
+        </figure>
+      </section>
 
       <section class="section grid" id="method">
         <div>

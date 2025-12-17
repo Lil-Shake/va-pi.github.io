@@ -53,6 +53,36 @@ a:hover {
   padding: 80px 0 40px;
 }
 
+/* TL;DR (match iREPA's "blockquote-like" card) */
+.tldr-section {
+  margin: 25px auto 0;
+  max-width: 920px;
+  text-align: left;
+  padding: 15px 20px;
+  border-left: 4px solid var(--accent);
+  background: rgba(255, 255, 255, 0.75);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+}
+
+.tldr-section p {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--muted);
+}
+
+.tldr-section strong {
+  color: var(--accent);
+}
+
+.tldr-section .tldr-label {
+  font-weight: 750;
+  color: var(--text);
+  margin-right: 6px;
+}
+
 .title {
   font-size: 42px;
   margin: 0 0 20px;
