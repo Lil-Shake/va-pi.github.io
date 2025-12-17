@@ -166,13 +166,13 @@ a:hover {
 /* Figures inside the paper body (responsive) */
 .paper-figure {
   margin: 22px 0 0;
-  width: 80%;
+  width: 95%;
   margin-left: auto;
   margin-right: auto;
 }
 
 .paper-figure.figure-half {
-  width: 50%;
+  width: 60%;
 }
 
 .paper-figure img {
