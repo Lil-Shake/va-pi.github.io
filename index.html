@@ -58,46 +58,46 @@
 
       <!-- TL;DR (styled like iREPA) -->
       <div class="tldr-section">
-        <p><span class="tldr-label">TL;DR:</span> We propose <b>VA-π</b>, a lightweight post-training framework that directly optimizes <b>visual AR models</b> with a principled <b>pixel-space objective</b>, solved by introducing <b>evidence lower bound (ELBO)</b> that unifies pixel reconstruction and autoregressive modeling. To optimize under the discrete token space, VA-π introduces a <b>reinforcement-based alignment strategy</b> that treats the AR generator as a policy, uses pixel-space reconstruction quality as its intrinsic reward and Next Token Prediction (NTP) loss with noisy context as regulizer.</p>
+        <p><span class="tldr-label">TL;DR:</span> How should visual autoregressive models be optimized?
+          <i>Token space or pixel space? We argue the answer is pixel space.</i>
+          We propose <b>VA-π</b>, a lightweight post-training framework that directly optimizes <b>visual AR models</b> with a principled <b>pixel-space objective</b>, solved by introducing <b>evidence lower bound (ELBO)</b> that unifies pixel reconstruction and autoregressive modeling. To optimize under the discrete token space, VA-π introduces a <b>reinforcement-based alignment strategy</b> that treats the AR generator as a policy, uses pixel-space reconstruction quality as its intrinsic reward and Next Token Prediction (NTP) loss with noisy context as regulizer.</p>
       </div>
     </header>
 
     <main id="main">
-      <section class="section grid" id="">
-        <div>
-          <h2>Method</h2>
-          <p>
-            We align pixel-level likelihoods with a variational objective that directly supervises the autoregressive policy.
-            Pixel-space reconstruction quality provides intrinsic feedback for discrete token sequences, while the ELBO regularizer
-            maintains distributional consistency.
-          </p>
-          <ul class="highlights">
-            <li>Variational alignment objective that unifies pixel reconstruction and autoregressive modeling.</li>
-            <li>Pixel-aware reward without expensive free-running sampling.</li>
-            <li>Lightweight post-training: no tokenizer retraining, no external reward model.</li>
-          </ul>
-        </div>
-        <figure class="method">
-          <img src="static/img/method.svg" alt="VA-π method diagram">
-        </figure>
-      </section>
-
       <section class="section grid" id="method">
         <div>
-          <h2>Method</h2>
+          <!-- <h2>Method</h2>
           <p>
             We align pixel-level likelihoods with a variational objective that directly supervises the autoregressive policy.
             Pixel-space reconstruction quality provides intrinsic feedback for discrete token sequences, while the ELBO regularizer
             maintains distributional consistency.
-          </p>
-          <ul class="highlights">
-            <li>Variational alignment objective that unifies pixel reconstruction and autoregressive modeling.</li>
-            <li>Pixel-aware reward without expensive free-running sampling.</li>
-            <li>Lightweight post-training: no tokenizer retraining, no external reward model.</li>
-          </ul>
+          </p> -->
+
+          <div class="method-highlights" aria-label="Method highlights">
+            <div class="method-highlight">
+              <div>
+                <div class="method-highlight-title">Variational alignment objective</div>
+                <div class="method-highlight-desc">An ELBO-style objective that unifies pixel reconstruction and autoregressive modeling.</div>
+              </div>
+            </div>
+            <div class="method-highlight">
+              <div>
+                <div class="method-highlight-title">Pixel-aware intrinsic reward</div>
+                <div class="method-highlight-desc">Use pixel-space reconstruction quality as intrinsic feedback for discrete token sequences.</div>
+              </div>
+            </div>
+            <div class="method-highlight">
+              <div>
+                <div class="method-highlight-title">Lightweight post-training</div>
+                <div class="method-highlight-desc">No tokenizer retraining and no external reward model; keep the AR distribution stable with NTP regularization.</div>
+              </div>
+            </div>
+          </div>
         </div>
-        <figure class="method">
-          <img src="static/img/method.svg" alt="VA-π method diagram">
+
+        <figure class="teaser">
+          <img src="static/img/teaser.png" alt="VA-π teaser">
         </figure>
       </section>
 
