@@ -171,6 +171,10 @@ a:hover {
   margin-right: auto;
 }
 
+.paper-figure.figure-half {
+  width: 50%;
+}
+
 .paper-figure img {
   width: 100%;
   height: auto;

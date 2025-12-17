@@ -32,8 +32,8 @@
       <div class="toc-title">Contents</div>
       <a href="#overview">Overview</a>
       <a href="#observations">Observations</a>
-      <a href="#quant-results-ablation">Quantitative Results (C2I/T2I, Ablation)</a>
-      <a href="#quant-results">Quantitative Results (C2I/T2I)</a>
+      <a href="#quant-results-ablation">Ablation Study</a>
+      <a href="#quant-results">More Quantitative Results</a>
     </nav>
 
     <header class="paper-header">
@@ -250,7 +250,7 @@
         <p class="section-note">
           Qualitatively, VA-π also improves C2I generations on ImageNet-1K compared to naive post-training baselines (CFG scale = 1.0). Compared with LlamaGen-XXL, post-train tokenizer (PT), and STE-based post-train AR, VA-π shows better semantic alignment and image quality, suggesting pixel-space alignment encourages realistic generations.
         </p>
-        <figure class="paper-figure" aria-label="Qualitative comparison on C2I">
+        <figure class="paper-figure figure-half" aria-label="Qualitative comparison on C2I">
           <img src="static/img/vis-pt-ste_00.png" alt="Qualitative comparison of C2I generation">
           <figcaption>
             Qualitative C2I comparison (ImageNet-1K, CFG=1.0).
@@ -259,7 +259,7 @@
       </section>
 
       <section class="paper-section" id="quant-results-ablation">
-        <h2>Quantitative Results (C2I/T2I, Ablation Study)</h2>
+        <h2>Ablation Study</h2>
         <p class="section-note">
           <!-- TODO -->
           Report ablations for both class-to-image (C2I) and text-to-image (T2I) settings.
@@ -270,7 +270,7 @@
       </section>
 
       <section class="paper-section" id="quant-results">
-        <h2>Quantitative Results (C2I/T2I)</h2>
+        <h2>More Quantitative Results</h2>
         <p class="section-note">
           <!-- TODO -->
           Main quantitative results for both C2I and T2I benchmarks.
