@@ -117,9 +117,9 @@
           include tuning time and whether an <b>external reward</b> is used.
         </p>
         <ul class="bullet-highlights">
-          <li><b>Fast, lightweight gains.</b> Without external reward, VA-π improves LlamaGen-XXL on ImageNet-1K from <b>FID 14.36 → 7.65</b> (w/o CFG) in <b>25 minutes</b>, and improves LlamaGen-XL from <b>FID 15.55 → 9.23</b> in <b>20 minutes</b>.</li>
+          <li><b>Lightweight gains.</b> Without external reward, VA-π improves LlamaGen-XXL on ImageNet-1K from <b>FID 14.36 → 7.65</b> (w/o CFG) in <b>25 minutes</b>, and improves LlamaGen-XL from <b>FID 15.55 → 9.23</b> in <b>20 minutes</b>.</li>
           <li><b>Better quality at low cost.</b> VA-π boosts perceptual quality significantly: for LlamaGen-XXL (w/o CFG) <b>IS 86.55 → 116.70</b>, and for LlamaGen-XL (w/o CFG) <b>IS 79.16 → 111.59</b>; with CFG it reaches <b>IS 299.63</b> on LlamaGen-XL while still keeping tuning time at <b>20 minutes</b>.</li>
-          <li><b>Generalizes beyond C2I.</b> On GenEval, VA-π improves LlamaGen-XL overall from <b>0.306 → 0.339</b>, and also improves the unified multimodal model Janus-Pro 1B from <b>0.725 → 0.744</b>, acheive without fine-tuning on GenEval.</li>
+           <li><b>Generalizes beyond C2I.</b> On GenEval, VA-π improves LlamaGen-XL overall from <b>0.306 → 0.339</b>, and improves the unified multimodal model Janus-Pro 1B from <b>0.725 → 0.744</b>, without task-specific fine-tuning on GenEval.</li>
         </ul>
 
         <figure class="paper-table" aria-label="C2I quantitative results table">
@@ -245,6 +245,16 @@
             </table>
           </div>
           <figcaption>T2I: GenEval quantitative results.</figcaption>
+        </figure>
+
+        <p class="section-note">
+          Qualitatively, VA-π also improves C2I generations on ImageNet-1K compared to naive post-training baselines (CFG scale = 1.0). Compared with LlamaGen-XXL, post-train tokenizer (PT), and STE-based post-train AR, VA-π shows better semantic alignment and image quality, suggesting pixel-space alignment encourages realistic generations.
+        </p>
+        <figure class="paper-figure" aria-label="Qualitative comparison on C2I">
+          <img src="static/img/vis-pt-ste_00.png" alt="Qualitative comparison of C2I generation">
+          <figcaption>
+            Qualitative C2I comparison (ImageNet-1K, CFG=1.0).
+          </figcaption>
         </figure>
       </section>
 
