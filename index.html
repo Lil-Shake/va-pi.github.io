@@ -11,17 +11,17 @@
     <header class="hero">
       <h1 class="title">VA-π: Variational Policy Alignment for Pixel-Aware Autoregressive Generation</h1>
       <div class="authors">
-        <span><a href="https://lil-shake.github.io/">Xinyao Liao*</a></span>
-        <span><a href="https://qy-h00.github.io/">Qiyuan He*†</a></span>
-        <span><a href="https://kai422.github.io/">Kai Xu</a></span>
-        <span><a href="https://scholar.google.com/citations?user=rT3hqdcAAAAJ&hl=zh-CN">Xiaoye Qu</a></span>
-        <span><a href="https://yl3800.github.io/">Yicong Li</a></span>
-        <span><a href="https://www.eric-weiwei.com/">Wei Wei</a></span>
-        <span><a href="https://www.comp.nus.edu.sg/~ayao/">Angela Yao</a></span>
+        <span><a href="https://lil-shake.github.io/">Xinyao Liao*</a><sup>1</sup></span>
+        <span><a href="https://qy-h00.github.io/">Qiyuan He*†</a><sup>2</sup></span>
+        <span><a href="https://kai422.github.io/">Kai Xu</a><sup>2</sup></span>
+        <span><a href="https://scholar.google.com/citations?user=rT3hqdcAAAAJ&hl=zh-CN">Xiaoye Qu</a><sup>1</sup></span>
+        <span><a href="https://yl3800.github.io/">Yicong Li</a><sup>2</sup></span>
+        <span><a href="https://www.eric-weiwei.com/">Wei Wei</a><sup>1</sup></span>
+        <span><a href="https://www.comp.nus.edu.sg/~ayao/">Angela Yao</a><sup>2</sup></span>
       </div>
       <div class="affiliations">
-        <span>Huazhong University of Science &amp; Technology</span>
-        <span>National University of Singapore</span>
+        <span></a><sup>1</sup>Huazhong University of Science and Technology</span>
+        <span></a><sup>2</sup>National University of Singapore</span>
       </div>
       <div class="badges">
         <a class="badge" href="VA-Pi.pdf" target="_blank" rel="noopener">Paper</a>
@@ -31,13 +31,13 @@
     </header>
 
     <section class="section">
-      <h2>Abstract</h2>
       <p>
-        Autoregressive (AR) visual generation relies on tokenizers to map images to and from discrete sequences.  However, tokenizers are trained to reconstruct clean images from ground-truth tokens, while AR generators are optimized only for token likelihood. This misalignment leads to generated token sequences that may decode into low-quality images, without direct supervision from the pixel space. We propose \textbf{VA}-$\boldsymbol{\pi}$, a lightweight post-training framework that directly optimizes AR models with a principled pixel-space objective. VA-$\pi$ formulates the generator–tokenizer alignment as a variational optimization, deriving an evidence lower bound (ELBO) that unifies pixel reconstruction and autoregressive modeling. To optimize under the discrete token space, VA-$\pi$ introduces a reinforcement-based alignment strategy that treats the AR generator as a policy, uses pixel-space reconstruction quality as its intrinsic reward. The reward is measured by how well the predicted token sequences can reconstruct the original image under teacher forcing, giving the model direct pixel-level guidance without expensive free-running sampling. The regularization term of the ELBO serves as a natural regularizer, maintaining distributional consistency of tokens. VA-$\pi$ enables rapid adaptation of existing AR generators, without neither tokenizer retraining nor external reward models. With only 1\% ImageNet-1K data and 25 minutes of tuning, it reduces FID from 14.36 to 7.65 and improves IS from 86.55 to 116.70 on LlamaGen-XXL, while also yielding notable gains in the text-to-image task on GenEval for both visual generation model (LlamaGen: from 0.306 to 0.339) and unified multi-modal model (Janus-Pro: from 0.725 to 0.744).
-      </p>
       <div class="teaser">
         <img src="static/img/teaser.png" alt="Teaser placeholder for VA-π results">
       </div>
+      <h2>Abstract</h2>
+        Autoregressive (AR) visual generation relies on tokenizers to map images to and from discrete sequences.  However, tokenizers are trained to reconstruct clean images from ground-truth tokens, while AR generators are optimized only for token likelihood. This misalignment leads to generated token sequences that may decode into low-quality images, without direct supervision from the pixel space. We propose VA-π, a lightweight post-training framework that directly optimizes AR models with a principled pixel-space objective. VA-π formulates the generator–tokenizer alignment as a variational optimization, deriving an evidence lower bound (ELBO) that unifies pixel reconstruction and autoregressive modeling. To optimize under the discrete token space, VA-π introduces a reinforcement-based alignment strategy that treats the AR generator as a policy, uses pixel-space reconstruction quality as its intrinsic reward. The reward is measured by how well the predicted token sequences can reconstruct the original image under teacher forcing, giving the model direct pixel-level guidance without expensive free-running sampling. The regularization term of the ELBO serves as a natural regularizer, maintaining distributional consistency of tokens. VA-π enables rapid adaptation of existing AR generators, without neither tokenizer retraining nor external reward models. With only 1% ImageNet-1K data and 25 minutes of tuning, it reduces FID from 14.36 to 7.65 and improves IS from 86.55 to 116.70 on LlamaGen-XXL, while also yielding notable gains in the text-to-image task on GenEval for both visual generation model (LlamaGen: from 0.306 to 0.339) and unified multi-modal model (Janus-Pro: from 0.725 to 0.744).
+      </p>
     </section>
 
     <section class="section grid">
