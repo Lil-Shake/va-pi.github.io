@@ -3,64 +3,169 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="VA-π: Variational Policy Alignment for Pixel-Aware Autoregressive Generation. A lightweight post-training framework that aligns autoregressive visual generators with a principled pixel-space objective.">
+  <meta name="theme-color" content="#0b0d12">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="VA-π: Variational Policy Alignment for Pixel-Aware Autoregressive Generation">
+  <meta property="og:description" content="A lightweight post-training framework that aligns autoregressive visual generators with a principled pixel-space objective.">
+  <meta property="og:image" content="static/img/teaser.png">
+  <meta property="og:url" content="https://va-pi.github.io/">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="VA-π: Variational Policy Alignment for Pixel-Aware Autoregressive Generation">
+  <meta name="twitter:description" content="A lightweight post-training framework that aligns autoregressive visual generators with a principled pixel-space objective.">
+  <meta name="twitter:image" content="static/img/teaser.png">
+
+  <link rel="canonical" href="https://va-pi.github.io/">
+  <link rel="icon" href="static/img/favicon.svg" type="image/svg+xml">
   <title>VA-π: Variational Policy Alignment for Pixel-Aware Autoregressive Generation</title>
   <link rel="stylesheet" href="static/css/style.css">
+  <script defer src="static/js/main.js"></script>
 </head>
 <body>
-  <div class="page">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <nav class="topnav" aria-label="Primary">
+    <div class="topnav-inner">
+      <a class="brand" href="#top" aria-label="VA-π home">VA-π</a>
+      <div class="navlinks">
+        <a href="#abstract">Abstract</a>
+        <a href="#method">Method</a>
+        <a href="#resources">Resources</a>
+        <a href="#citation">Citation</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="page" id="top">
     <header class="hero">
       <h1 class="title">VA-π: Variational Policy Alignment for Pixel-Aware Autoregressive Generation</h1>
+
       <div class="authors">
-        <span><a href="https://lil-shake.github.io/">Xinyao Liao*</a><sup>1</sup></span>
-        <span><a href="https://qy-h00.github.io/">Qiyuan He*†</a><sup>2</sup></span>
-        <span><a href="https://kai422.github.io/">Kai Xu</a><sup>2</sup></span>
-        <span><a href="https://scholar.google.com/citations?user=rT3hqdcAAAAJ&hl=zh-CN">Xiaoye Qu</a><sup>1</sup></span>
-        <span><a href="https://yl3800.github.io/">Yicong Li</a><sup>2</sup></span>
-        <span><a href="https://www.eric-weiwei.com/">Wei Wei</a><sup>1</sup></span>
-        <span><a href="https://www.comp.nus.edu.sg/~ayao/">Angela Yao</a><sup>2</sup></span>
+        <span><a href="https://lil-shake.github.io/" target="_blank" rel="noopener">Xinyao Liao</a><sup>*</sup><sup>1</sup></span>
+        <span><a href="https://qy-h00.github.io/" target="_blank" rel="noopener">Qiyuan He</a><sup>*</sup><sup>†</sup><sup>2</sup></span>
+        <span><a href="https://kai422.github.io/" target="_blank" rel="noopener">Kai Xu</a><sup>2</sup></span>
+        <span><a href="https://scholar.google.com/citations?user=rT3hqdcAAAAJ&hl=zh-CN" target="_blank" rel="noopener">Xiaoye Qu</a><sup>1</sup></span>
+        <span><a href="https://yl3800.github.io/" target="_blank" rel="noopener">Yicong Li</a><sup>2</sup></span>
+        <span><a href="https://www.eric-weiwei.com/" target="_blank" rel="noopener">Wei Wei</a><sup>1</sup></span>
+        <span><a href="https://www.comp.nus.edu.sg/~ayao/" target="_blank" rel="noopener">Angela Yao</a><sup>2</sup></span>
       </div>
+
       <div class="affiliations">
-        <span></a><sup>1</sup>Huazhong University of Science and Technology</span>
-        <span></a><sup>2</sup>National University of Singapore</span>
+        <span><sup>1</sup>Huazhong University of Science and Technology</span>
+        <span><sup>2</sup>National University of Singapore</span>
       </div>
-      <div class="badges">
-        <a class="badge" href="VA-Pi.pdf" target="_blank" rel="noopener">Paper</a>
-        <a class="badge secondary" href="#">arXiv (coming soon)</a>
+
+      <div class="contributions">
+        <span><sup>*</sup>Equal contribution</span>
+        <span><sup>†</sup>Corresponding author</span>
+      </div>
+
+      <div class="badges" aria-label="Project links">
+        <a class="badge disabled" href="#" aria-disabled="true" title="Add VA-Pi.pdf to enable">Paper (PDF)</a>
+        <a class="badge secondary disabled" href="#" aria-disabled="true">arXiv (coming soon)</a>
         <a class="badge" href="https://github.com/Lil-Shake/VA-Pi" target="_blank" rel="noopener">Code</a>
       </div>
     </header>
 
-    <section class="section">
-      <p>
-      <div class="teaser">
-        <img src="static/img/teaser.png" alt="Teaser placeholder for VA-π results">
-      </div>
-      <h2>Abstract</h2>
-        Autoregressive (AR) visual generation relies on tokenizers to map images to and from discrete sequences.  However, tokenizers are trained to reconstruct clean images from ground-truth tokens, while AR generators are optimized only for token likelihood. This misalignment leads to generated token sequences that may decode into low-quality images, without direct supervision from the pixel space. We propose VA-π, a lightweight post-training framework that directly optimizes AR models with a principled pixel-space objective. VA-π formulates the generator–tokenizer alignment as a variational optimization, deriving an evidence lower bound (ELBO) that unifies pixel reconstruction and autoregressive modeling. To optimize under the discrete token space, VA-π introduces a reinforcement-based alignment strategy that treats the AR generator as a policy, uses pixel-space reconstruction quality as its intrinsic reward. The reward is measured by how well the predicted token sequences can reconstruct the original image under teacher forcing, giving the model direct pixel-level guidance without expensive free-running sampling. The regularization term of the ELBO serves as a natural regularizer, maintaining distributional consistency of tokens. VA-π enables rapid adaptation of existing AR generators, without neither tokenizer retraining nor external reward models. With only 1% ImageNet-1K data and 25 minutes of tuning, it reduces FID from 14.36 to 7.65 and improves IS from 86.55 to 116.70 on LlamaGen-XXL, while also yielding notable gains in the text-to-image task on GenEval for both visual generation model (LlamaGen: from 0.306 to 0.339) and unified multi-modal model (Janus-Pro: from 0.725 to 0.744).
-      </p>
-    </section>
-
-    <section class="section grid">
-      <div>
-        <h2>Method</h2>
+    <main id="main">
+      <section class="section" id="abstract">
+        <h2>Abstract</h2>
+        <figure class="teaser">
+          <img src="static/img/teaser.png" alt="VA-π teaser figure">
+        </figure>
         <p>
-          We align pixel-level likelihoods with a variational objective that directly supervises
-          the autoregressive policy. A lightweight critic provides feedback for token ordering
-          while cross-scale priors preserve structure and texture through extended rollouts.
+          Autoregressive (AR) visual generation relies on tokenizers to map images to and from discrete sequences.
+          However, tokenizers are trained to reconstruct clean images from ground-truth tokens, while AR generators
+          are optimized only for token likelihood. This misalignment leads to generated token sequences that may decode
+          into low-quality images, without direct supervision from the pixel space. We propose VA-π, a lightweight post-training
+          framework that directly optimizes AR models with a principled pixel-space objective. VA-π formulates the generator–tokenizer
+          alignment as a variational optimization, deriving an evidence lower bound (ELBO) that unifies pixel reconstruction and
+          autoregressive modeling. To optimize under the discrete token space, VA-π introduces a reinforcement-based alignment strategy
+          that treats the AR generator as a policy, uses pixel-space reconstruction quality as its intrinsic reward. The reward is measured
+          by how well the predicted token sequences can reconstruct the original image under teacher forcing, giving the model direct pixel-level
+          guidance without expensive free-running sampling. The regularization term of the ELBO serves as a natural regularizer, maintaining
+          distributional consistency of tokens. VA-π enables rapid adaptation of existing AR generators, without neither tokenizer retraining nor
+          external reward models.
         </p>
-        <ul class="highlights">
-          <li>Variational policy alignment that unifies pixel-aware objectives with autoregressive decoding.</li>
-          <li>Stability through critic-guided rollouts and curriculum over spatial scales.</li>
-          <li>Generalizable to diverse downstream tasks with minimal architectural changes.</li>
-        </ul>
-      </div>
-      <div class="method">
-        <img src="static/img/method.svg" alt="Method diagram placeholder for VA-π">
-      </div>
-    </section>
+      </section>
+
+      <section class="section grid" id="method">
+        <div>
+          <h2>Method</h2>
+          <p>
+            We align pixel-level likelihoods with a variational objective that directly supervises the autoregressive policy.
+            Pixel-space reconstruction quality provides intrinsic feedback for discrete token sequences, while the ELBO regularizer
+            maintains distributional consistency.
+          </p>
+          <ul class="highlights">
+            <li>Variational alignment objective that unifies pixel reconstruction and autoregressive modeling.</li>
+            <li>Pixel-aware reward without expensive free-running sampling.</li>
+            <li>Lightweight post-training: no tokenizer retraining, no external reward model.</li>
+          </ul>
+        </div>
+        <figure class="method">
+          <img src="static/img/method.svg" alt="VA-π method diagram">
+        </figure>
+      </section>
+
+      <section class="section" id="resources">
+        <h2>Resources</h2>
+        <div class="cards">
+          <div class="card">
+            <div class="card-title">Code</div>
+            <div class="card-body">
+              The full implementation and training scripts are available on GitHub.
+              <div class="card-actions">
+                <a class="badge" href="https://github.com/Lil-Shake/VA-Pi" target="_blank" rel="noopener">Open repository</a>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-title">Release</div>
+            <div class="card-body">
+              <ul class="compact">
+                <li><strong>03/2025</strong>: Code is publicly available.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <details class="details">
+          <summary>Quickstart (commands)</summary>
+          <div class="details-body">
+            <pre class="codeblock"><code>git clone https://github.com/Lil-Shake/VA-Pi
+cd VA-Pi</code></pre>
+            <p class="note">
+              For full installation, training, and evaluation instructions, see the repository README.
+            </p>
+          </div>
+        </details>
+      </section>
+
+      <section class="section" id="citation">
+        <h2>Citation</h2>
+        <p class="note">Update the BibTeX below once the paper/arXiv entry is finalized.</p>
+        <div class="codebox">
+          <div class="codebox-head">
+            <div class="codebox-title">BibTeX</div>
+            <button class="copy-btn" type="button" data-copy-target="#bibtex">Copy</button>
+          </div>
+          <pre class="codeblock"><code id="bibtex">@article{vapi2025,
+  title   = {VA-\\pi: Variational Policy Alignment for Pixel-Aware Autoregressive Generation},
+  author  = {Liao, Xinyao and He, Qiyuan and Xu, Kai and Qu, Xiaoye and Li, Yicong and Wei, Wei and Yao, Angela},
+  journal = {arXiv preprint arXiv:????.?????},
+  year    = {2025}
+}</code></pre>
+        </div>
+      </section>
+    </main>
 
     <footer class="footer">
-      <span>* Equal contribution &nbsp;&nbsp; | &nbsp;&nbsp; † Corresponding author</span>
+      <span><sup>*</sup> Equal contribution &nbsp;&nbsp; | &nbsp;&nbsp; <sup>†</sup> Corresponding author</span>
     </footer>
   </div>
 </body>
