@@ -154,6 +154,7 @@ a:hover {
   border-radius: 12px;
   overflow: hidden;
   background: #fff;
+  width: 80%;
 }
 
 .paper-teaser img {
@@ -165,6 +166,9 @@ a:hover {
 /* Figures inside the paper body (responsive) */
 .paper-figure {
   margin: 22px 0 0;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .paper-figure img {
@@ -476,6 +480,12 @@ a:hover {
 
   .paper-section p {
     font-size: 17px;
+  }
+
+  /* On small screens, use full width for readability */
+  .paper-teaser,
+  .paper-figure {
+    width: 100%;
   }
 }
 
