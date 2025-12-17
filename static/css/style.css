@@ -77,8 +77,8 @@ a:hover {
   color: var(--text-secondary);
 }
 
-.tldr-section strong,
-.tldr-section b {
+.tldr-section p strong,
+.tldr-section p b {
   color: var(--accent);
   font-weight: 700;
   letter-spacing: -0.01em;
@@ -277,6 +277,14 @@ a:hover {
   min-width: 0;
 }
 
+.hero-method .method-highlights,
+.hero-method .method-highlight,
+.hero-method .method-highlight > div,
+.hero-method .method-highlight-title,
+.hero-method .method-highlight-desc {
+  text-align: left;
+}
+
 .hero-method-teaser {
   display: flex;
   align-items: center;
@@ -284,9 +292,12 @@ a:hover {
 }
 
 .hero-method-teaser img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
+  /* Override `.teaser img { width: 100%; }` to allow true downscaling */
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+  display: block;
 }
 
 .cards {
