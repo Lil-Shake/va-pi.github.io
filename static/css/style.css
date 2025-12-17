@@ -54,16 +54,13 @@ a:hover {
 }
 
 /* TL;DR (match iREPA's "blockquote-like" card) */
-.tldr-section {
-  margin: 25px auto 0;
-  max-width: 920px;
+.central-header .tldr-section {
+  margin: 25px auto;
+  max-width: 800px;
   text-align: left;
   padding: 15px 20px;
   border-left: 4px solid var(--accent);
-  background: rgba(255, 255, 255, 0.75);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  box-shadow: var(--shadow);
+  background: #f8f9fa;
 }
 
 .tldr-section p {
