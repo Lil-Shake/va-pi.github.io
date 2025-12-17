@@ -33,7 +33,7 @@
       <a href="#overview">Overview</a>
       <a href="#observations">Observations</a>
       <a href="#quant-results-ablation">Ablation Study</a>
-      <a href="#quant-results">More Quantitative Results</a>
+      <a href="#quant-results">More Qualitative Results</a>
     </nav>
 
     <header class="paper-header">
@@ -248,14 +248,8 @@
         </figure>
 
         <p class="section-note">
-          Qualitatively, VA-π also improves C2I generations on ImageNet-1K compared to naive post-training baselines (CFG scale = 1.0). Compared with LlamaGen-XXL, post-train tokenizer (PT), and STE-based post-train AR, VA-π shows better semantic alignment and image quality, suggesting pixel-space alignment encourages realistic generations.
+          For additional qualitative comparisons (C2I and T2I), see <a href="#quant-results">More Qualitative Results</a>.
         </p>
-        <figure class="paper-figure figure-half" aria-label="Qualitative comparison on C2I">
-          <img src="static/img/vis-pt-ste_00.png" alt="Qualitative comparison of C2I generation">
-          <figcaption>
-            Qualitative C2I comparison (ImageNet-1K, CFG=1.0).
-          </figcaption>
-        </figure>
       </section>
 
       <section class="paper-section" id="quant-results-ablation">
@@ -270,13 +264,105 @@
       </section>
 
       <section class="paper-section" id="quant-results">
-        <h2>More Quantitative Results</h2>
-        <p class="section-note">
-          <!-- TODO -->
-          Main quantitative results for both C2I and T2I benchmarks.
+        <h2>More Qualitative Results</h2>
+
+        <h3>Visualization of learning curves</h3>
+        <p>
+          We visualize learning curves during reinforcement learning fine-tuning. The reward increases steadily across settings,
+          indicating consistent policy improvement under VA-π across generators of different scales and modalities.
         </p>
-        <div class="table-placeholder" aria-label="Main results tables placeholder">
-          <div class="placeholder-note">[Place C2I + T2I main results tables/plots here]</div>
+        <div class="figure-placeholder" aria-label="Learning curves figure placeholder">
+          <div class="placeholder-note">[Add figure: learning curves (e.g., learning_curves_all.png)]</div>
+        </div>
+
+        <h3>Class-to-image generation (ImageNet-1K)</h3>
+        <p>
+          We provide additional qualitative comparisons on C2I generation across ImageNet-1K classes.
+          All samples use identical decoding settings (<b>CFG = 1.0</b>, temperature = 1.0, top-k = 0, top-p = 1.0).
+        </p>
+
+        <figure class="paper-figure figure-half" aria-label="Qualitative comparison among post-training methods">
+          <img src="static/img/vis-pt-ste_00.png" alt="C2I qualitative comparison: LlamaGen-XXL vs PT vs STE vs VA-π">
+          <figcaption>
+            C2I qualitative comparison (ImageNet-1K, CFG = 1.0): LlamaGen-XXL vs post-train tokenizer (PT) vs STE post-train AR vs VA-π.
+          </figcaption>
+        </figure>
+
+        <p class="section-note">
+          <b>Post-train tokenizer observation.</b> Decoder-only fine-tuning tends to over-smooth textures: despite lower reconstruction loss,
+          long tuning can degrade metrics (e.g., <b>FID 14.36 → 22.99</b>, <b>IS 86.55 → 72.49</b>), highlighting the limitation of decoder-only tuning.
+        </p>
+        <div class="figure-placeholder" aria-label="Post-train tokenizer qualitative figure placeholder">
+          <div class="placeholder-note">[Add figure: post-train tokenizer qualitative (e.g., vis-pt.png)]</div>
+        </div>
+
+        <div class="qual-grid" aria-label="Additional ImageNet class qualitative comparisons">
+          <figure class="paper-figure">
+            <img src="static/img/021_kite_comparison_grid-cfg-1.0.png" alt="Qualitative comparison on the kite class">
+            <figcaption>ImageNet C2I: <span class="mono">kite</span>.</figcaption>
+          </figure>
+          <figure class="paper-figure">
+            <img src="static/img/167_English_foxhound_comparison_grid-cfg-1.0.png" alt="Qualitative comparison on the English foxhound class">
+            <figcaption>ImageNet C2I: <span class="mono">English foxhound</span>.</figcaption>
+          </figure>
+          <figure class="paper-figure">
+            <img src="static/img/285_Egyptian_cat_comparison_grid-cfg-1.0.png" alt="Qualitative comparison on the Egyptian cat class">
+            <figcaption>ImageNet C2I: <span class="mono">Egyptian cat</span>.</figcaption>
+          </figure>
+          <figure class="paper-figure">
+            <img src="static/img/417_balloon_comparison_grid-cfg-1.0.png" alt="Qualitative comparison on the balloon class">
+            <figcaption>ImageNet C2I: <span class="mono">balloon</span>.</figcaption>
+          </figure>
+          <figure class="paper-figure">
+            <img src="static/img/538_dome_comparison_grid-cfg-1.0.png" alt="Qualitative comparison on the dome class">
+            <figcaption>ImageNet C2I: <span class="mono">dome</span>.</figcaption>
+          </figure>
+          <figure class="paper-figure">
+            <img src="static/img/696_paintbrush_comparison_grid-cfg-1.0.png" alt="Qualitative comparison on the paintbrush class">
+            <figcaption>ImageNet C2I: <span class="mono">paintbrush</span>.</figcaption>
+          </figure>
+          <figure class="paper-figure">
+            <img src="static/img/856_thresher__thrasher__threshing_machine_comparison_grid-cfg-1.0.png" alt="Qualitative comparison on the thresher / thrasher / threshing machine class">
+            <figcaption>ImageNet C2I: <span class="mono">thresher / thrasher / threshing machine</span>.</figcaption>
+          </figure>
+          <figure class="paper-figure">
+            <img src="static/img/933_cheeseburger_comparison_grid-cfg-1.0.png" alt="Qualitative comparison on the cheeseburger class">
+            <figcaption>ImageNet C2I: <span class="mono">cheeseburger</span>.</figcaption>
+          </figure>
+          <figure class="paper-figure">
+            <img src="static/img/953_pineapple__ananas_comparison_grid-cfg-1.0.png" alt="Qualitative comparison on the pineapple / ananas class">
+            <figcaption>ImageNet C2I: <span class="mono">pineapple / ananas</span>.</figcaption>
+          </figure>
+          <figure class="paper-figure">
+            <img src="static/img/997_bolete_comparison_grid-cfg-1.0.png" alt="Qualitative comparison on the bolete class">
+            <figcaption>ImageNet C2I: <span class="mono">bolete</span>.</figcaption>
+          </figure>
+        </div>
+
+        <h3>Text-to-image generation (GenEval)</h3>
+        <p>
+          We present additional T2I qualitative comparisons on GenEval prompts, focusing on harder compositional tasks
+          (attribute binding, counting, position, two-object combination). All samples use identical decoding settings
+          (<b>CFG = 5.0</b>, temperature = 1.0, top-k = 0, top-p = 1.0).
+        </p>
+
+        <div class="qual-grid" aria-label="Additional GenEval qualitative comparisons">
+          <figure class="paper-figure">
+            <img src="static/img/Janus-Pro_1B_comparison_grid_category_color_attr_4x4.png" alt="Qualitative comparison on attribute binding">
+            <figcaption>GenEval: <span class="mono">attribute binding</span>.</figcaption>
+          </figure>
+          <figure class="paper-figure">
+            <img src="static/img/Janus-Pro_1B_comparison_grid_category_counting_4x4.png" alt="Qualitative comparison on counting">
+            <figcaption>GenEval: <span class="mono">counting</span>.</figcaption>
+          </figure>
+          <figure class="paper-figure">
+            <img src="static/img/Janus-Pro_1B_comparison_grid_category_position_4x4.png" alt="Qualitative comparison on position">
+            <figcaption>GenEval: <span class="mono">position</span>.</figcaption>
+          </figure>
+          <figure class="paper-figure">
+            <img src="static/img/Janus-Pro_1B_comparison_grid_category_two_object_4x4.png" alt="Qualitative comparison on two-object combination">
+            <figcaption>GenEval: <span class="mono">two-object combination</span>.</figcaption>
+          </figure>
         </div>
       </section>
 
