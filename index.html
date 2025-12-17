@@ -117,9 +117,9 @@
           include tuning time and whether an <b>external reward</b> is used.
         </p>
         <ul class="bullet-highlights">
-          <li><b>Fast, lightweight gains.</b> VA-π reaches large improvements with only minutes of tuning, while requiring <b>no external reward</b> and no costly recipe changes.</li>
-          <li><b>Consistent quality boosts.</b> On ImageNet-1K C2I, VA-π substantially improves both diversity and perceptual quality (FID/IS), outperforming naive tokenizer/AR post-training baselines across model scales.</li>
-          <li><b>Generalizes beyond C2I.</b> On GenEval, VA-π improves the overall score and multiple fine-grained sub-metrics, and also transfers to a unified multimodal model (Janus-Pro 1B).</li>
+          <li><b>Fast, lightweight gains.</b> Without external reward, VA-π improves LlamaGen-XXL on ImageNet-1K from <b>FID 14.36 → 7.65</b> (w/o CFG) in <b>25 minutes</b>, and improves LlamaGen-XL from <b>FID 15.55 → 9.23</b> in <b>20 minutes</b>.</li>
+          <li><b>Better quality at low cost.</b> VA-π boosts perceptual quality significantly: for LlamaGen-XXL (w/o CFG) <b>IS 86.55 → 116.70</b>, and for LlamaGen-XL (w/o CFG) <b>IS 79.16 → 111.59</b>; with CFG it reaches <b>IS 299.63</b> on LlamaGen-XL while still keeping tuning time at <b>20 minutes</b>.</li>
+          <li><b>Generalizes beyond C2I.</b> On GenEval, VA-π improves LlamaGen-XL overall from <b>0.306 → 0.339</b>, and also improves the unified multimodal model Janus-Pro 1B from <b>0.725 → 0.744</b>.</li>
         </ul>
 
         <figure class="paper-table" aria-label="C2I quantitative results table">
