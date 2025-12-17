@@ -72,7 +72,7 @@
         <div class="tldr-section">
           <p><span class="tldr-label">TL;DR:</span> How should visual autoregressive models be optimized?
             <b>Token space or pixel space?</b> We argue the answer is pixel space.
-            We propose <b>VA-π</b>, a lightweight post-training framework that directly optimizes <b>visual AR models</b> with a principled <b>pixel-space objective</b>!
+            We propose <b>VA-π</b>, a lightweight post-training framework that directly optimizes <b>visual autoregressive models</b> with a principled <b>pixel-space objective</b>!
             <!-- , solved by introducing <b>evidence lower bound (ELBO)</b> that unifies pixel reconstruction and autoregressive modeling.
             To optimize under the discrete token space, VA-π introduces a <b>RL-based alignment strategy</b> that treats the AR generator as a policy, uses pixel-space reconstruction quality as its intrinsic reward and Next Token Prediction (NTP) loss with noisy context as regulizer. -->
           </p>
@@ -98,7 +98,7 @@
       <section class="paper-section" id="observations">
         <h2>Observations</h2>
 
-        <h3 id="obs-alignment-to-pixel-space">1. Alignment to Pixel-Space</h3>
+        <h3 id="obs-alignment-to-pixel-space">1. Alignment to pixel-space</h3>
         <p>
           <!-- TODO: replace with final text -->
           VA-π aligns autoregressive image generation with the ground-truth distribution in pixel space. Qualitatively, VA-π corrects off-manifold token sequences that decode into distorted structures, producing more coherent and faithful reconstructions. Quantitatively, both <b>embedding density estimation (KDE)</b> and <b>low-dimensional projections (t-SNE)</b> show that VA-π shifts generated images closer to the ground-truth manifold.
@@ -113,9 +113,131 @@
           <!-- TODO: replace with final text -->
           We compare VA-π with naive post-training baselines, showing more stable optimization and improved pixel-space fidelity.
         </p>
-        <div class="figure-placeholder" aria-label="Observation 2 figure placeholder">
-          <div class="placeholder-note">[Place comparisons vs naive post-train here]</div>
-        </div>
+
+        <figure class="paper-table" aria-label="C2I quantitative results table">
+          <figcaption>C2I: ImageNet-1K class-conditional quantitative results.</figcaption>
+          <div class="table-scroll" role="region" aria-label="Scrollable table">
+            <table>
+              <thead>
+                <tr>
+                  <th rowspan="2" style="text-align:left;">Model</th>
+                  <th rowspan="2">Ext. Rwd</th>
+                  <th rowspan="2">Time (min) ↓</th>
+                  <th colspan="4">w/o cfg</th>
+                  <th colspan="4">w/ cfg</th>
+                </tr>
+                <tr>
+                  <th>FID ↓</th><th>IS ↑</th><th>Pre. ↑</th><th>Rec. ↑</th>
+                  <th>FID ↓</th><th>IS ↑</th><th>Pre. ↑</th><th>Rec. ↑</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="row-group">
+                  <td style="text-align:left;"><b>LlamaGen-XL (775M)</b></td>
+                  <td>--</td><td>--</td>
+                  <td>15.55</td><td>79.16</td><td>0.62</td><td>0.69</td>
+                  <td class="hl">2.79</td><td>286.88</td><td>0.84</td><td>0.54</td>
+                </tr>
+                <tr>
+                  <td style="text-align:left;">&nbsp;&nbsp;+ AR-GRPO</td>
+                  <td>✓</td><td>149</td>
+                  <td>--</td><td>--</td><td>--</td><td>--</td>
+                  <td>3.63</td><td>293.07</td><td>0.86</td><td>0.48</td>
+                </tr>
+                <tr>
+                  <td style="text-align:left;">&nbsp;&nbsp;+ <b>VA-π (Ours)</b></td>
+                  <td>×</td><td>20</td>
+                  <td class="hl">9.23</td><td class="hl">111.59</td><td>0.71</td><td>0.59</td>
+                  <td>2.94</td><td class="hl">299.63</td><td>0.84</td><td>0.53</td>
+                </tr>
+
+                <tr class="sep"><td colspan="11"></td></tr>
+
+                <tr class="row-group">
+                  <td style="text-align:left;"><b>LlamaGen-XXL (1.4B)</b></td>
+                  <td>--</td><td>--</td>
+                  <td>14.36</td><td>86.55</td><td>0.63</td><td>0.69</td>
+                  <td>2.37</td><td>252.16</td><td>0.81</td><td>0.59</td>
+                </tr>
+                <tr>
+                  <td style="text-align:left;">&nbsp;&nbsp;+ Post-train Tokenizer</td>
+                  <td>×</td><td>18</td>
+                  <td>14.26</td><td>86.70</td><td>0.63</td><td>0.68</td>
+                  <td>2.72</td><td>246.97</td><td>0.80</td><td>0.59</td>
+                </tr>
+                <tr>
+                  <td style="text-align:left;">&nbsp;&nbsp;+ Post-train Tokenizer (longer)</td>
+                  <td>×</td><td>207</td>
+                  <td>22.99</td><td>72.49</td><td>0.56</td><td>0.68</td>
+                  <td>4.31</td><td>221.57</td><td>0.75</td><td>0.58</td>
+                </tr>
+                <tr>
+                  <td style="text-align:left;">&nbsp;&nbsp;+ STE based Post-train AR</td>
+                  <td>×</td><td>381</td>
+                  <td>11.46</td><td>102.21</td><td>0.68</td><td>0.61</td>
+                  <td>4.17</td><td>267.34</td><td>0.83</td><td>0.51</td>
+                </tr>
+                <tr>
+                  <td style="text-align:left;">&nbsp;&nbsp;+ <b>VA-π (Ours)</b></td>
+                  <td>×</td><td>25</td>
+                  <td class="hl">7.65</td><td class="hl">116.70</td><td>0.71</td><td>0.64</td>
+                  <td class="hl">2.28</td><td class="hl">273.53</td><td>0.83</td><td>0.56</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </figure>
+
+        <figure class="paper-table" aria-label="T2I GenEval results table">
+          <figcaption>T2I: GenEval quantitative results.</figcaption>
+          <div class="table-scroll" role="region" aria-label="Scrollable table">
+            <table>
+              <thead>
+                <tr>
+                  <th style="text-align:left;">Model</th>
+                  <th>Ext. Rwd</th>
+                  <th>Position ↑</th>
+                  <th>Color ↑</th>
+                  <th>Attr. Bind. ↑</th>
+                  <th>Counting ↑</th>
+                  <th>Single Obj. ↑</th>
+                  <th>Two Obj. ↑</th>
+                  <th>Overall ↑</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="row-group">
+                  <td style="text-align:left;"><b>LlamaGen-XL</b></td>
+                  <td>--</td>
+                  <td>0.042</td><td>0.550</td><td>0.032</td><td>0.197</td><td>0.750</td><td>0.263</td><td>0.306</td>
+                </tr>
+                <tr>
+                  <td style="text-align:left;">&nbsp;&nbsp;+ AR-GRPO</td>
+                  <td>✓</td>
+                  <td>0.040</td><td>0.593</td><td>0.030</td><td>0.228</td><td class="hl">0.791</td><td>0.263</td><td>0.324</td>
+                </tr>
+                <tr>
+                  <td style="text-align:left;">&nbsp;&nbsp;+ <b>VA-π (Ours)</b></td>
+                  <td>×</td>
+                  <td class="hl">0.050</td><td class="hl">0.606</td><td class="hl">0.040</td><td class="hl">0.238</td><td>0.769</td><td class="hl">0.328</td><td class="hl">0.339</td>
+                </tr>
+
+                <tr class="sep"><td colspan="9"></td></tr>
+
+                <tr class="row-group">
+                  <td style="text-align:left;"><b>Janus-Pro 1B</b></td>
+                  <td>-</td>
+                  <td class="hl">0.605</td><td>0.902</td><td>0.540</td><td>0.531</td><td>0.972</td><td>0.801</td><td>0.725</td>
+                </tr>
+                <tr>
+                  <td style="text-align:left;">&nbsp;&nbsp;+ <b>VA-π (Ours)</b></td>
+                  <td>×</td>
+                  <td>0.600</td><td class="hl">0.912</td><td class="hl">0.585</td><td class="hl">0.540</td><td class="hl">0.988</td><td class="hl">0.835</td><td class="hl">0.744</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </figure>
       </section>
 
       <section class="paper-section" id="quant-results-ablation">

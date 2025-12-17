@@ -182,6 +182,66 @@ a:hover {
   text-align: center;
 }
 
+/* Tables inside the paper body (responsive) */
+.paper-table {
+  margin: 18px 0 0;
+}
+
+.paper-table figcaption {
+  margin: 10px 0 10px;
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  font-size: 14px;
+  color: var(--muted-2);
+  line-height: 1.5;
+  text-align: center;
+}
+
+.table-scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border: 1px solid var(--border-light);
+  border-radius: 12px;
+  background: #fff;
+}
+
+.table-scroll table {
+  width: 100%;
+  min-width: 820px; /* allow horizontal scroll on small screens */
+  border-collapse: collapse;
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  font-size: 13px;
+  line-height: 1.35;
+}
+
+.table-scroll th,
+.table-scroll td {
+  padding: 8px 10px;
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+  text-align: center;
+  white-space: nowrap;
+}
+
+.table-scroll thead th {
+  background: #f8f9fa;
+  font-weight: 700;
+}
+
+.table-scroll tbody tr.row-group td {
+  background: rgba(248, 249, 250, 0.55);
+}
+
+.table-scroll tbody tr.sep td {
+  border-bottom: none;
+  height: 8px;
+  padding: 0;
+  background: transparent;
+}
+
+.table-scroll td.hl {
+  background: #dbeafe; /* lightblue */
+  font-weight: 700;
+}
+
 /* Safety: any image in main column should never overflow */
 .paper-main img {
   max-width: 100%;
