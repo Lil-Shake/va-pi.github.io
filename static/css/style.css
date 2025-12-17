@@ -53,8 +53,8 @@ a:hover {
   padding: 80px 0 40px;
 }
 
-/* TL;DR (match iREPA's "blockquote-like" card) */
-.central-header .tldr-section {
+/* TL;DR blockquote style */
+.tldr-section {
   margin: 25px auto;
   max-width: 800px;
   text-align: left;
@@ -65,9 +65,9 @@ a:hover {
 
 .tldr-section p {
   margin: 0;
-  font-size: 15px;
+  font-size: 1rem;
   line-height: 1.7;
-  color: var(--muted);
+  color: var(--text-secondary);
 }
 
 .tldr-section strong {
@@ -75,8 +75,8 @@ a:hover {
 }
 
 .tldr-section .tldr-label {
-  font-weight: 750;
-  color: var(--text);
+  font-weight: 700;
+  color: var(--text-primary);
   margin-right: 6px;
 }
 
