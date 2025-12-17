@@ -101,11 +101,11 @@
         <h3 id="obs-alignment-to-pixel-space">1. Alignment to Pixel-Space</h3>
         <p>
           <!-- TODO: replace with final text -->
-          VA-π enables efficient post-training via variational policy optimization, aligning the pixel-space distribution of AR generated images with that of ground-truth images.
+          VA-π aligns autoregressive image generation with the ground-truth distribution in pixel space. Qualitatively, VA-π corrects off-manifold token sequences that decode into distorted structures, producing more coherent and faithful reconstructions. Quantitatively, both <b>embedding density estimation (KDE)</b> and <b>low-dimensional projections (t-SNE)</b> show that VA-π shifts generated images closer to the ground-truth manifold.
         </p>
         <figure class="paper-figure" aria-label="Observation 1 teaser">
           <img src="static/img/obs-1.png" alt="Alignment to Pixel Space teaser">
-          <figcaption>Visualization of VA-π promoting alignment from token space generations back to the pixel space.</figcaption>
+          <figcaption>VA-π brings autoregressive generations closer to the ground-truth image manifold in both appearance and distribution.</figcaption>
         </figure>
 
         <h3 id="obs-better-than-naive">2. VA-π is better than naive post-train</h3>
