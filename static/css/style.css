@@ -320,6 +320,24 @@ a:hover {
   hyphens: auto;
 }
 
+/* Bullet highlights (paper-style) */
+.bullet-highlights {
+  margin: 10px 0 0 22px;
+  padding: 0;
+}
+
+.bullet-highlights li {
+  margin: 10px 0;
+  color: var(--text-secondary);
+}
+
+.bullet-highlights li b,
+.bullet-highlights li strong {
+  color: var(--accent);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
 /* Match bold styling in body paragraphs to TL;DR bold */
 .paper-section p b,
 .paper-section p strong {

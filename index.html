@@ -110,9 +110,17 @@
 
         <h3 id="obs-better-than-naive">2. VA-π is better than naive post-train</h3>
         <p>
-          <!-- TODO: replace with final text -->
-          We compare VA-π with naive post-training baselines, showing more stable optimization and improved pixel-space fidelity.
+          We benchmark VA-π against naive post-training baselines on two representative settings:
+          <b>class-to-image</b> generation on <b>ImageNet-1K</b> (LlamaGen-XL/XXL; evaluated with and without CFG),
+          and <b>text-to-image</b> reasoning on <b>GenEval</b> (LlamaGen-XL and the unified multimodal model Janus-Pro 1B).
+          We report standard generation metrics (FID/IS/Precision/Recall for C2I; GenEval sub-scores and overall for T2I) and
+          include tuning time and whether an <b>external reward</b> is used.
         </p>
+        <ul class="bullet-highlights">
+          <li><b>Fast, lightweight gains.</b> VA-π reaches large improvements with only minutes of tuning, while requiring <b>no external reward</b> and no costly recipe changes.</li>
+          <li><b>Consistent quality boosts.</b> On ImageNet-1K C2I, VA-π substantially improves both diversity and perceptual quality (FID/IS), outperforming naive tokenizer/AR post-training baselines across model scales.</li>
+          <li><b>Generalizes beyond C2I.</b> On GenEval, VA-π improves the overall score and multiple fine-grained sub-metrics, and also transfers to a unified multimodal model (Janus-Pro 1B).</li>
+        </ul>
 
         <figure class="paper-table" aria-label="C2I quantitative results table">
           <div class="table-scroll" role="region" aria-label="Scrollable table">
