@@ -62,18 +62,10 @@
           <i>Token space or pixel space? We argue the answer is pixel space.</i>
           We propose <b>VA-π</b>, a lightweight post-training framework that directly optimizes <b>visual AR models</b> with a principled <b>pixel-space objective</b>, solved by introducing <b>evidence lower bound (ELBO)</b> that unifies pixel reconstruction and autoregressive modeling. To optimize under the discrete token space, VA-π introduces a <b>reinforcement-based alignment strategy</b> that treats the AR generator as a policy, uses pixel-space reconstruction quality as its intrinsic reward and Next Token Prediction (NTP) loss with noisy context as regulizer.</p>
       </div>
-    </header>
 
-    <main id="main">
-      <section class="section grid" id="method">
-        <div>
-          <!-- <h2>Method</h2>
-          <p>
-            We align pixel-level likelihoods with a variational objective that directly supervises the autoregressive policy.
-            Pixel-space reconstruction quality provides intrinsic feedback for discrete token sequences, while the ELBO regularizer
-            maintains distributional consistency.
-          </p> -->
-
+      <!-- Method (highlights + teaser, in header like iREPA) -->
+      <section class="section grid hero-method" id="method">
+        <div class="hero-method-left">
           <div class="method-highlights" aria-label="Method highlights">
             <div class="method-highlight">
               <div>
@@ -96,11 +88,13 @@
           </div>
         </div>
 
-        <figure class="teaser">
+        <figure class="teaser hero-method-teaser" aria-label="Teaser figure">
           <img src="static/img/teaser.png" alt="VA-π teaser">
         </figure>
       </section>
+    </header>
 
+    <main id="main">
       <section class="section" id="resources">
         <h2>Resources</h2>
         <div class="cards">
