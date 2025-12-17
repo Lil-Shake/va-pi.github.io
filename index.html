@@ -57,7 +57,7 @@
 
         <div class="paper-contrib">
           <span><sup>*</sup>Equal contribution</span>
-          <span><sup>†</sup>Corresponding author</span>
+          <span><sup>†</sup>Project lead</span>
         </div>
 
         <div class="paper-badges" aria-label="Project links">
@@ -72,8 +72,9 @@
         <div class="tldr-section">
           <p><span class="tldr-label">TL;DR:</span> How should visual autoregressive models be optimized?
             <b>Token space or pixel space?</b> We argue the answer is pixel space.
-            We propose <b>VA-π</b>, a lightweight post-training framework that directly optimizes <b>visual AR models</b> with a principled <b>pixel-space objective</b>, solved by introducing <b>evidence lower bound (ELBO)</b> that unifies pixel reconstruction and autoregressive modeling.
-            To optimize under the discrete token space, VA-π introduces a <b>reinforcement-based alignment strategy</b> that treats the AR generator as a policy, uses pixel-space reconstruction quality as its intrinsic reward and Next Token Prediction (NTP) loss with noisy context as regulizer.
+            We propose <b>VA-π</b>, a lightweight post-training framework that directly optimizes <b>visual AR models</b> with a principled <b>pixel-space objective</b>!
+            <!-- , solved by introducing <b>evidence lower bound (ELBO)</b> that unifies pixel reconstruction and autoregressive modeling.
+            To optimize under the discrete token space, VA-π introduces a <b>RL-based alignment strategy</b> that treats the AR generator as a policy, uses pixel-space reconstruction quality as its intrinsic reward and Next Token Prediction (NTP) loss with noisy context as regulizer. -->
           </p>
         </div>
       </div>
@@ -84,11 +85,13 @@
         <h2>Overview</h2>
         <p>
           <!-- TODO: replace with final paper overview -->
-          VA-π is a lightweight post-training framework for visual autoregressive (AR) models that optimizes a principled pixel-space objective via a variational formulation (ELBO) and a reinforcement-based alignment strategy.
+          Autoregressive (AR) visual generation relies on tokenizers to map images to and from discrete sequences.  However, tokenizers are trained to reconstruct clean images from ground-truth tokens, while AR generators are optimized only for token likelihood. This misalignment leads to generated token sequences that may decode into low-quality images, without direct supervision from the pixel space. 
+          Specifically, we propose <b>VA-π</b>, a lightweight post-training framework that directly optimizes AR models with a principled <b>pixel-space objective</b>. VA-π formulates the generator–tokenizer alignment as a variational optimization, deriving an <b>evidence lower bound (ELBO)</b> that unifies pixel reconstruction and autoregressive modeling. To optimize under the discrete token space, VA-π introduces a <b>reinforcement-based alignment strategy</b> that treats the AR generator as a policy, uses pixel-space reconstruction quality as its intrinsic reward. The reward is measured by how well the predicted token sequences can reconstruct the original image under teacher forcing, giving the model direct pixel-level guidance without expensive free-running sampling. The regularization term of the ELBO serves as a natural regularizer, maintaining distributional consistency of tokens. VA-π enables rapid adaptation of existing AR generators, without neither tokenizer retraining nor external reward models. With only <b>1% ImageNet-1K data and 25 minutes of tuning on 8 A100 GPUs</b>, it reduces <b>FID from 14.36 to 7.65</b> and improves <b>IS from 86.55 to 116.70</b> on LlamaGen-XXL, while also yielding notable gains in the text-to-image task on GenEval for both visual generation model (LlamaGen: <b>from 0.306 to 0.339</b>) and unified multi-modal model (Janus-Pro: <b>from 0.725 to 0.744</b>).
         </p>
-        <div class="figure-placeholder" aria-label="Overview figure placeholder">
-          <div class="placeholder-note">[Place overview figure / method diagram here]</div>
-        </div>
+        <figure class="paper-figure" aria-label="Method overview">
+          <img src="static/img/method.png" alt="Method Overview">
+          <figcaption>Overview of the VA-π method.</figcaption>
+        </figure>
       </section>
 
       <section class="paper-section" id="observations">
