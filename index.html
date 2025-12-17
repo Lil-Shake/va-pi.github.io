@@ -45,39 +45,23 @@
         <span><sup>2</sup>National University of Singapore</span>
       </div>
 
-      <div class="contributions">
+      <!-- <div class="contributions">
         <span><sup>*</sup>Equal contribution</span>
         <span><sup>†</sup>Corresponding author</span>
-      </div>
+      </div> -->
 
       <div class="badges" aria-label="Project links">
-        <a class="badge disabled" href="#" aria-disabled="true" title="Add VA-Pi.pdf to enable">Paper (PDF)</a>
+        <!-- <a class="badge disabled" href="#" aria-disabled="true" title="Add VA-Pi.pdf to enable">Paper (PDF)</a> -->
         <a class="badge secondary disabled" href="#" aria-disabled="true">arXiv (coming soon)</a>
         <a class="badge" href="https://github.com/Lil-Shake/VA-Pi" target="_blank" rel="noopener">Code</a>
       </div>
     </header>
 
     <main id="main">
-      <section class="section" id="abstract">
-        <h2>Abstract</h2>
-        <figure class="teaser">
-          <img src="static/img/teaser.png" alt="VA-π teaser figure">
-        </figure>
-        <p>
-          Autoregressive (AR) visual generation relies on tokenizers to map images to and from discrete sequences.
-          However, tokenizers are trained to reconstruct clean images from ground-truth tokens, while AR generators
-          are optimized only for token likelihood. This misalignment leads to generated token sequences that may decode
-          into low-quality images, without direct supervision from the pixel space. We propose VA-π, a lightweight post-training
-          framework that directly optimizes AR models with a principled pixel-space objective. VA-π formulates the generator–tokenizer
-          alignment as a variational optimization, deriving an evidence lower bound (ELBO) that unifies pixel reconstruction and
-          autoregressive modeling. To optimize under the discrete token space, VA-π introduces a reinforcement-based alignment strategy
-          that treats the AR generator as a policy, uses pixel-space reconstruction quality as its intrinsic reward. The reward is measured
-          by how well the predicted token sequences can reconstruct the original image under teacher forcing, giving the model direct pixel-level
-          guidance without expensive free-running sampling. The regularization term of the ELBO serves as a natural regularizer, maintaining
-          distributional consistency of tokens. VA-π enables rapid adaptation of existing AR generators, without neither tokenizer retraining nor
-          external reward models.
-        </p>
-      </section>
+      <!-- TL;DR -->
+      <div class="tldr-section">
+        <p><span class="tldr-label">TL;DR:</span> We propose <b>VA-π</b>, a lightweight post-training framework that directly optimizes <b>visual AR models</b> with a principled <b>pixel-space objective</b>, solved by introducing <b>evidence lower bound (ELBO)</b> that unifies pixel reconstruction and autoregressive modeling. To optimize under the discrete token space, VA-π introduces a <b>reinforcement-based alignment strategy</b> that treats the AR generator as a policy, uses pixel-space reconstruction quality as its intrinsic reward and Next Token Prediction (NTP) loss with noisy context as regulizer.</p>
+      </div>
 
       <section class="section grid" id="method">
         <div>
