@@ -188,7 +188,7 @@ a:hover {
 }
 
 .paper-table figcaption {
-  margin: 10px 0 10px;
+  margin: 10px 0 0;
   font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
   font-size: 14px;
   color: var(--muted-2);
@@ -219,11 +219,18 @@ a:hover {
   border-bottom: 1px solid rgba(0,0,0,0.08);
   text-align: center;
   white-space: nowrap;
+  vertical-align: middle;
 }
 
 .table-scroll thead th {
   background: #f8f9fa;
   font-weight: 700;
+  border-bottom: 1px solid rgba(0,0,0,0.14);
+}
+
+.table-scroll th:first-child,
+.table-scroll td:first-child {
+  text-align: left;
 }
 
 .table-scroll tbody tr.row-group td {
@@ -238,7 +245,7 @@ a:hover {
 }
 
 .table-scroll td.hl {
-  background: #dbeafe; /* lightblue */
+  background: #d9ecff; /* lightblue (paper-like) */
   font-weight: 700;
 }
 
