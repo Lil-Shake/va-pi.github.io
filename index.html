@@ -85,9 +85,9 @@
         <h2>Overview</h2>
         <p>
           <!-- TODO: replace with final paper overview -->
-          Autoregressive (AR) visual generation relies on tokenizers to map images to and from discrete sequences.  However, tokenizers are trained to reconstruct clean images from ground-truth tokens, while AR generators are optimized only for token likelihood. This misalignment leads to generated token sequences that may decode into low-quality images, without direct supervision from the pixel space. 
+          Autoregressive (AR) visual generation relies on tokenizers to map images to and from <b>discrete sequences</b>.  However, tokenizers are trained to reconstruct clean images from ground-truth tokens, while AR generators are optimized only for <b>token likelihood</b>. This misalignment leads to generated token sequences that may decode into <b>low-quality images</b>, without direct supervision from the pixel space. 
 
-          Specifically, we propose <b>VA-π</b>, a lightweight post-training framework that directly optimizes AR models with a principled <b>pixel-space objective</b>. VA-π formulates the generator–tokenizer alignment as a variational optimization, deriving an <b>evidence lower bound (ELBO)</b> that unifies pixel reconstruction and autoregressive modeling. To optimize under the discrete token space, VA-π introduces a <b>RL-based alignment strategy</b> that treats the AR generator as a policy, uses pixel-space reconstruction quality as its intrinsic reward. The reward is measured by how well the predicted token sequences can reconstruct the original image under teacher forcing, giving the model direct pixel-level guidance without expensive free-running sampling. The regularization term of the ELBO serves as a natural regularizer, maintaining distributional consistency of tokens. 
+          Specifically, we propose <b>VA-π</b>, a lightweight post-training framework that directly optimizes AR models with a principled <b>pixel-space objective</b>. VA-π formulates the generator–tokenizer alignment as a variational optimization, deriving an <b>evidence lower bound (ELBO)</b> that unifies <b>pixel reconstruction and autoregressive modeling</b>. To optimize under the discrete token space, VA-π introduces a <b>RL-based alignment strategy</b> that treats the AR generator as a policy, uses pixel-space reconstruction quality as its intrinsic reward. The reward is measured by how well the predicted token sequences can reconstruct the original image under teacher forcing, giving the model direct pixel-level guidance without expensive free-running sampling. The regularization term of the ELBO serves as a natural regularizer, maintaining distributional consistency of tokens. 
         </p>
         <figure class="paper-figure" aria-label="Method overview">
           <img src="static/img/method.png" alt="Method Overview">
@@ -98,14 +98,15 @@
       <section class="paper-section" id="observations">
         <h2>Observations</h2>
 
-        <h3 id="obs-alignment-to-pixel-space">1. Alignment to Pixel Space</h3>
+        <h3 id="obs-alignment-to-pixel-space">1. Alignment to Pixel-Space</h3>
         <p>
           <!-- TODO: replace with final text -->
-          We analyze why optimizing AR models purely in token space can be misaligned with pixel-space quality, and motivate pixel-space supervision.
+          VA-π enables efficient post-training via variational policy optimization, aligning the pixel-space distribution of AR generated images with that of ground-truth images.
         </p>
-        <div class="figure-placeholder" aria-label="Observation 1 figure placeholder">
-          <div class="placeholder-note">[Place figures / plots for “Alignment to Pixel Space” here]</div>
-        </div>
+        <figure class="paper-figure" aria-label="Observation 1 teaser">
+          <img src="static/img/teaser.png" alt="Alignment to Pixel Space teaser">
+          <figcaption>Visualization of VA-π promoting alignment from token space generations back to the pixel space.</figcaption>
+        </figure>
 
         <h3 id="obs-better-than-naive">2. VA-π is better than naive post-train</h3>
         <p>

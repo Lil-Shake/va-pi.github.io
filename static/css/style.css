@@ -179,6 +179,7 @@ a:hover {
   font-size: 14px;
   color: var(--muted-2);
   line-height: 1.5;
+  text-align: center;
 }
 
 /* Safety: any image in main column should never overflow */
