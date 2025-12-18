@@ -154,11 +154,11 @@ a:hover {
   border-radius: 12px;
   overflow: hidden;
   background: #fff;
-  width: 95%;
+  width: 100%;
 }
 
 .paper-teaser img {
-  width: 95%;
+  width: 100%;
   height: auto;
   display: block;
 }
@@ -171,8 +171,44 @@ a:hover {
   margin-right: auto;
 }
 
+.paper-figure.figure-full {
+  width: 100%;
+}
+
 .paper-figure.figure-half {
   width: 60%;
+}
+
+.figure-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  align-items: start;
+}
+
+.figure-subcap {
+  margin-top: 6px;
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  font-size: 13px;
+  color: var(--muted-2);
+  line-height: 1.4;
+  text-align: center;
+}
+
+.figure-missing {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: 1px dashed rgba(0,0,0,0.28);
+  border-radius: 12px;
+  background: #fafafa;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  font-size: 13px;
+  color: rgba(0,0,0,0.6);
+  text-align: center;
 }
 
 .paper-figure img {
@@ -512,6 +548,10 @@ a:hover {
   .paper-teaser,
   .paper-figure {
     width: 100%;
+  }
+
+  .figure-row {
+    grid-template-columns: 1fr;
   }
 
   .qual-grid {

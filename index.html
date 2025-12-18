@@ -89,7 +89,7 @@
 
           Specifically, we propose <b>VA-π</b>, a lightweight post-training framework that directly optimizes AR models with a principled <b>pixel-space objective</b>. VA-π formulates the generator–tokenizer alignment as a variational optimization, deriving an <b>evidence lower bound (ELBO)</b> that unifies <b>pixel reconstruction and autoregressive modeling</b>. To optimize under the discrete token space, VA-π introduces a <b>RL-based alignment strategy</b> that treats the AR generator as a policy, uses pixel-space reconstruction quality as its intrinsic reward. The reward is measured by how well the predicted token sequences can reconstruct the original image under teacher forcing, giving the model direct pixel-level guidance without expensive free-running sampling. The regularization term of the ELBO serves as a natural regularizer, maintaining distributional consistency of tokens. 
         </p>
-        <figure class="paper-figure" aria-label="Method overview">
+        <figure class="paper-figure figure-full" aria-label="Method overview">
           <img src="static/img/method.png" alt="Method Overview">
           <figcaption>Overview of the VA-π method.</figcaption>
         </figure>
@@ -103,7 +103,7 @@
           <!-- TODO: replace with final text -->
           VA-π aligns autoregressive image generation with the ground-truth distribution in pixel space. Qualitatively, VA-π corrects off-manifold token sequences that decode into distorted structures, producing more coherent and faithful reconstructions. Quantitatively, both <b>embedding density estimation (KDE)</b> and <b>low-dimensional projections (t-SNE)</b> show that VA-π shifts generated images closer to the ground-truth manifold.
         </p>
-        <figure class="paper-figure" aria-label="Observation 1 teaser">
+        <figure class="paper-figure figure-full" aria-label="Observation 1 teaser">
           <img src="static/img/obs-1.png" alt="Alignment to Pixel Space teaser">
           <figcaption>VA-π brings autoregressive generations closer to the ground-truth image manifold in both appearance and distribution.</figcaption>
         </figure>
@@ -121,6 +121,13 @@
           <li><b>Better quality at low cost.</b> VA-π boosts perceptual quality significantly: for LlamaGen-XXL (w/o CFG) <b>IS 86.55 → 116.70</b>, and for LlamaGen-XL (w/o CFG) <b>IS 79.16 → 111.59</b>; with CFG it reaches <b>IS 299.63</b> on LlamaGen-XL while still keeping tuning time at <b>20 minutes</b>.</li>
            <li><b>Generalizes beyond C2I.</b> On GenEval, VA-π improves LlamaGen-XL overall from <b>0.306 → 0.339</b>, and improves the unified multimodal model Janus-Pro 1B from <b>0.725 → 0.744</b>, without task-specific fine-tuning on GenEval.</li>
         </ul>
+
+        <figure class="paper-figure figure-half" aria-label="C2I qualitative comparison among post-training methods">
+          <img src="static/img/vis-pt-ste_00.png" alt="C2I qualitative comparison: LlamaGen-XXL vs PT vs STE vs VA-π">
+          <figcaption>
+            C2I qualitative comparison (ImageNet-1K, CFG = 1.0): LlamaGen-XXL vs post-train tokenizer (PT) vs STE post-train AR vs VA-π.
+          </figcaption>
+        </figure>
 
         <figure class="paper-table" aria-label="C2I quantitative results table">
           <div class="table-scroll" role="region" aria-label="Scrollable table">
@@ -254,13 +261,143 @@
 
       <section class="paper-section" id="quant-results-ablation">
         <h2>Ablation Study</h2>
-        <p class="section-note">
-          <!-- TODO -->
-          Report ablations for both class-to-image (C2I) and text-to-image (T2I) settings.
+        <p>
+          We conduct extensive ablation studies to examine the effectiveness of each component in <b>VA-π</b>,
+          focusing on <b>reward composition</b>, <b>prior regularization</b>, and <b>contextual noise</b>.
         </p>
-        <div class="table-placeholder" aria-label="Ablation tables placeholder">
-          <div class="placeholder-note">[Place C2I + T2I ablation tables here]</div>
-        </div>
+
+        <h3 id="ablation-reward">Reward and Loss Composition</h3>
+        <p>
+          The table below investigates how different reward components influence training dynamics and generation quality.
+          Using only reconstruction reward (pixel-level <span class="mono">L</span><sub>MSE</sub> / perceptual <span class="mono">L</span><sub>p</sub>) fails to provide meaningful alignment,
+          because the policy can drift away from the pre-trained AR token distribution without prior-regularization constraints.
+          Incorporating the prior regularization term as an auxiliary objective (token-level cross-entropy <span class="mono">L</span><sub>prior</sub>) stabilizes optimization by maintaining the token-level likelihood learned in the original AR model.
+          The full combination achieves the best balance, showing that both reconstruction rewards and the prior term are essential for generator–tokenizer consistency.
+        </p>
+
+        <figure class="paper-table" aria-label="Ablation on reward composition (w/o CFG)">
+          <div class="table-scroll" role="region" aria-label="Scrollable table">
+            <table>
+              <thead>
+                <tr>
+                  <th><span class="mono">L</span><sub>MSE</sub></th>
+                  <th><span class="mono">L</span><sub>p</sub></th>
+                  <th><span class="mono">L</span><sub>prior</sub></th>
+                  <th><b>FID ↓</b></th>
+                  <th><b>IS ↑</b></th>
+                  <th><b>Pre. ↑</b></th>
+                  <th><b>Rec. ↑</b></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td></td><td></td><td></td>
+                  <td>14.36</td><td>86.55</td><td>0.63</td><td>0.69</td>
+                </tr>
+                <tr>
+                  <td></td><td>✓</td><td></td>
+                  <td>38.76</td><td>49.78</td><td>0.48</td><td>0.46</td>
+                </tr>
+                <tr>
+                  <td>✓</td><td>✓</td><td></td>
+                  <td>38.63</td><td>48.14</td><td>0.49</td><td>0.46</td>
+                </tr>
+                <tr>
+                  <td></td><td></td><td>✓</td>
+                  <td>14.17</td><td>88.78</td><td>0.63</td><td>0.69</td>
+                </tr>
+                <tr>
+                  <td>✓</td><td>✓</td><td>✓</td>
+                  <td class="hl"><b>7.65</b></td><td class="hl"><b>116.70</b></td><td>0.68</td><td>0.64</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <figcaption>
+            <b>Ablation on reward composition (w/o CFG).</b>
+            We analyze the contribution of each reward component:
+            <span class="mono">L</span><sub>MSE</sub> (pixel-level reconstruction),
+            <span class="mono">L</span><sub>p</sub> (perceptual similarity via LPIPS),
+            and <span class="mono">L</span><sub>prior</sub> (token-level cross-entropy regularization).
+          </figcaption>
+        </figure>
+
+        <h3 id="ablation-regularization">Prior Regularization Term</h3>
+        <p>
+          The figure below analyzes the effect of regularization strength (&beta;) across KL- and CE-based variants.
+          Here, <b>KL</b> refers to Kullback–Leibler divergence regularization that penalizes deviations from the base policy distribution,
+          while <b>CE</b> denotes cross-entropy regularization that enforces consistency with target token probabilities.
+          Without regularization, optimization diverges rapidly (FID 38.63).
+          Moderate weights (&beta; = 0.1) effectively constrain policy updates, improving both FID and IS,
+          while overly strong regularization (&beta; = 1.0) oversmooths gradients and suppresses diversity.
+          Notably, CE regularization consistently outperforms KL under the same setting, and lightweight CE (&beta; = 0.1) provides the best trade-off.
+        </p>
+
+        <figure class="paper-figure figure-full" aria-label="Ablation on regularization weight (w/o CFG)">
+          <div class="figure-row">
+            <div>
+              <img src="static/img/reg_ablation_fid.png" alt="FID over regularization weight beta">
+              <div class="figure-subcap">(a) FID over weight &beta;</div>
+            </div>
+            <div>
+              <img src="static/img/reg_ablation_is.png" alt="IS over regularization weight beta" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'figure-missing',textContent:'Missing image: static/img/reg_ablation_is.png'}));">
+              <div class="figure-subcap">(b) IS over weight &beta;</div>
+            </div>
+          </div>
+          <figcaption>
+            <b>Ablation on regularization weight (w/o CFG).</b>
+            CE regularization consistently outperforms KL regularization on FID and IS. Moderate CE regularization (&beta; = 0.1) provides the best results.
+          </figcaption>
+        </figure>
+
+        <h3 id="ablation-noise">Contextual Noise</h3>
+        <p>
+          We examine the impact of stochastic contextual noise to mitigate exposure bias during policy updates.
+          We ablate the corruption probability (&xi;) from 0 to 0.95 in the LlamaGen T2I post-train setting.
+          Injecting a moderate amount of noise (&xi; = 0.5) yields the best overall performance on GenEval (Overall 0.339),
+          while no noise (&xi; = 0) or excessive perturbation (&xi; &gt; 0.75) leads to suboptimal results.
+        </p>
+
+        <figure class="paper-table" aria-label="Ablation on noise ratio (xi) during training">
+          <div class="table-scroll" role="region" aria-label="Scrollable table">
+            <table>
+              <thead>
+                <tr>
+                  <th><b>&xi;</b></th>
+                  <th><b>PT</b></th>
+                  <th><b>CL</b></th>
+                  <th><b>AB</b></th>
+                  <th><b>CT</b></th>
+                  <th><b>SO</b></th>
+                  <th><b>TO</b></th>
+                  <th><b>Overall</b></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>0</td><td>0.048</td><td>0.566</td><td>0.023</td><td>0.159</td><td>0.688</td><td>0.326</td><td>0.302</td>
+                </tr>
+                <tr>
+                  <td>0.25</td><td>0.043</td><td>0.598</td><td>0.025</td><td>0.215</td><td>0.700</td><td>0.306</td><td>0.315</td>
+                </tr>
+                <tr>
+                  <td>0.5</td><td class="hl"><b>0.050</b></td><td class="hl"><b>0.606</b></td><td class="hl"><b>0.040</b></td><td class="hl"><b>0.238</b></td><td class="hl"><b>0.769</b></td><td class="hl"><b>0.328</b></td><td class="hl"><b>0.339</b></td>
+                </tr>
+                <tr>
+                  <td>0.75</td><td>0.075</td><td>0.641</td><td>0.028</td><td>0.163</td><td>0.750</td><td>0.333</td><td>0.332</td>
+                </tr>
+                <tr>
+                  <td>0.95</td><td>0.043</td><td>0.652</td><td>0.040</td><td>0.181</td><td>0.728</td><td>0.328</td><td>0.329</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <figcaption>
+            <b>Ablation on noise ratio (&xi;) during training.</b>
+            Moderate noise ratio (0.5) achieves the best overall performance on GenEval.
+            Abbreviations: PT (Position), CL (Color), AB (Attribute Binding), CT (Counting), SO (Single Object), TO (Two objects).
+          </figcaption>
+        </figure>
       </section>
 
       <section class="paper-section" id="quant-results">
@@ -271,13 +408,6 @@
           We provide additional qualitative comparisons on C2I generation across ImageNet-1K classes.
           All samples use identical decoding settings (<b>CFG = 1.0</b>, temperature = 1.0, top-k = 0, top-p = 1.0).
         </p>
-
-        <figure class="paper-figure figure-half" aria-label="Qualitative comparison among post-training methods">
-          <img src="static/img/vis-pt-ste_00.png" alt="C2I qualitative comparison: LlamaGen-XXL vs PT vs STE vs VA-π">
-          <figcaption>
-            C2I qualitative comparison (ImageNet-1K, CFG = 1.0): LlamaGen-XXL vs post-train tokenizer (PT) vs STE post-train AR vs VA-π.
-          </figcaption>
-        </figure>
 
         <div class="qual-grid" aria-label="Additional ImageNet class qualitative comparisons">
           <figure class="paper-figure">
