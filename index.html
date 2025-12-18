@@ -90,7 +90,7 @@
           Specifically, we propose <b>VA-π</b>, a lightweight post-training framework that directly optimizes AR models with a principled <b>pixel-space objective</b>. VA-π formulates the generator–tokenizer alignment as a variational optimization, deriving an <b>evidence lower bound (ELBO)</b> that unifies <b>pixel reconstruction and autoregressive modeling</b>. To optimize under the discrete token space, VA-π introduces a <b>RL-based alignment strategy</b> that treats the AR generator as a policy, uses pixel-space reconstruction quality as its intrinsic reward. The reward is measured by how well the predicted token sequences can reconstruct the original image under teacher forcing, giving the model direct pixel-level guidance without expensive free-running sampling. The regularization term of the ELBO serves as a natural regularizer, maintaining distributional consistency of tokens. 
         </p>
         <figure class="paper-figure figure-full" aria-label="Method overview">
-          <img src="static/img/method.png" alt="Method Overview">
+          <img src="static/img/method.png" alt="Method Overview" loading="lazy" decoding="async">
           <figcaption>Overview of the VA-π method.</figcaption>
         </figure>
       </section>
@@ -104,7 +104,7 @@
           VA-π aligns autoregressive image generation with the ground-truth distribution in pixel space. Qualitatively, VA-π corrects off-manifold token sequences that decode into distorted structures, producing more coherent and faithful reconstructions. Quantitatively, both <b>embedding density estimation (KDE)</b> and <b>low-dimensional projections (t-SNE)</b> show that VA-π shifts generated images closer to the ground-truth manifold.
         </p>
         <figure class="paper-figure figure-full" aria-label="Observation 1 teaser">
-          <img src="static/img/obs-1.png" alt="Alignment to Pixel Space teaser">
+          <img src="static/img/obs-1.png" alt="Alignment to Pixel Space teaser" loading="lazy" decoding="async">
           <figcaption>VA-π brings autoregressive generations closer to the ground-truth image manifold in both appearance and distribution.</figcaption>
         </figure>
 
@@ -121,13 +121,6 @@
           <li><b>Better quality at low cost.</b> VA-π boosts perceptual quality significantly: for LlamaGen-XXL (w/o CFG) <b>IS 86.55 → 116.70</b>, and for LlamaGen-XL (w/o CFG) <b>IS 79.16 → 111.59</b>; with CFG it reaches <b>IS 299.63</b> on LlamaGen-XL while still keeping tuning time at <b>20 minutes</b>.</li>
            <li><b>Generalizes beyond C2I.</b> On GenEval, VA-π improves LlamaGen-XL overall from <b>0.306 → 0.339</b>, and improves the unified multimodal model Janus-Pro 1B from <b>0.725 → 0.744</b>, without task-specific fine-tuning on GenEval.</li>
         </ul>
-
-        <figure class="paper-figure figure-half" aria-label="C2I qualitative comparison among post-training methods">
-          <img src="static/img/vis-pt-ste_00.png" alt="C2I qualitative comparison: LlamaGen-XXL vs PT vs STE vs VA-π">
-          <figcaption>
-            C2I qualitative comparison (ImageNet-1K, CFG = 1.0): LlamaGen-XXL vs post-train tokenizer (PT) vs STE post-train AR vs VA-π.
-          </figcaption>
-        </figure>
 
         <figure class="paper-table" aria-label="C2I quantitative results table">
           <div class="table-scroll" role="region" aria-label="Scrollable table">
@@ -254,6 +247,13 @@
           <figcaption>T2I: GenEval quantitative results.</figcaption>
         </figure>
 
+        <figure class="paper-figure figure-half" aria-label="C2I qualitative comparison among post-training methods">
+          <img src="static/img/vis-pt-ste_00.png" alt="C2I qualitative comparison: LlamaGen-XXL vs PT vs STE vs VA-π" loading="lazy" decoding="async">
+          <figcaption>
+            C2I qualitative comparison (ImageNet-1K, CFG = 1.0): LlamaGen-XXL vs post-train tokenizer (PT) vs STE post-train AR vs VA-π.
+          </figcaption>
+        </figure>
+
         <p class="section-note">
           For additional qualitative comparisons (C2I and T2I), see <a href="#quant-results">More Qualitative Results</a>.
         </p>
@@ -336,11 +336,11 @@
         <figure class="paper-figure figure-full" aria-label="Ablation on regularization weight (w/o CFG)">
           <div class="figure-row">
             <div>
-              <img src="static/img/reg_ablation_fid.png" alt="FID over regularization weight beta">
+              <img src="static/img/reg_ablation_fid.png" alt="FID over regularization weight beta" loading="lazy" decoding="async">
               <div class="figure-subcap">(a) FID over weight &beta;</div>
             </div>
             <div>
-              <img src="static/img/reg_ablation_is.png" alt="IS over regularization weight beta">
+              <img src="static/img/reg_ablation_is.png" alt="IS over regularization weight beta" loading="lazy" decoding="async">
               <div class="figure-subcap">(b) IS over weight &beta;</div>
             </div>
           </div>
@@ -411,43 +411,43 @@
 
         <div class="qual-grid" aria-label="Additional ImageNet class qualitative comparisons">
           <figure class="paper-figure">
-            <img src="static/img/021_kite_comparison_grid-cfg-1.0.png" alt="Qualitative comparison on the kite class">
+          <img src="static/img/021_kite_comparison_grid-cfg-1.0.png" alt="Qualitative comparison on the kite class" loading="lazy" decoding="async">
             <figcaption>ImageNet C2I: <span class="mono">kite</span>.</figcaption>
           </figure>
           <figure class="paper-figure">
-            <img src="static/img/167_English_foxhound_comparison_grid-cfg-1.0.png" alt="Qualitative comparison on the English foxhound class">
+          <img src="static/img/167_English_foxhound_comparison_grid-cfg-1.0.png" alt="Qualitative comparison on the English foxhound class" loading="lazy" decoding="async">
             <figcaption>ImageNet C2I: <span class="mono">English foxhound</span>.</figcaption>
           </figure>
           <figure class="paper-figure">
-            <img src="static/img/285_Egyptian_cat_comparison_grid-cfg-1.0.png" alt="Qualitative comparison on the Egyptian cat class">
+          <img src="static/img/285_Egyptian_cat_comparison_grid-cfg-1.0.png" alt="Qualitative comparison on the Egyptian cat class" loading="lazy" decoding="async">
             <figcaption>ImageNet C2I: <span class="mono">Egyptian cat</span>.</figcaption>
           </figure>
           <figure class="paper-figure">
-            <img src="static/img/417_balloon_comparison_grid-cfg-1.0.png" alt="Qualitative comparison on the balloon class">
+          <img src="static/img/417_balloon_comparison_grid-cfg-1.0.png" alt="Qualitative comparison on the balloon class" loading="lazy" decoding="async">
             <figcaption>ImageNet C2I: <span class="mono">balloon</span>.</figcaption>
           </figure>
           <figure class="paper-figure">
-            <img src="static/img/538_dome_comparison_grid-cfg-1.0.png" alt="Qualitative comparison on the dome class">
+          <img src="static/img/538_dome_comparison_grid-cfg-1.0.png" alt="Qualitative comparison on the dome class" loading="lazy" decoding="async">
             <figcaption>ImageNet C2I: <span class="mono">dome</span>.</figcaption>
           </figure>
           <figure class="paper-figure">
-            <img src="static/img/696_paintbrush_comparison_grid-cfg-1.0.png" alt="Qualitative comparison on the paintbrush class">
+          <img src="static/img/696_paintbrush_comparison_grid-cfg-1.0.png" alt="Qualitative comparison on the paintbrush class" loading="lazy" decoding="async">
             <figcaption>ImageNet C2I: <span class="mono">paintbrush</span>.</figcaption>
           </figure>
           <figure class="paper-figure">
-            <img src="static/img/856_thresher__thrasher__threshing_machine_comparison_grid-cfg-1.0.png" alt="Qualitative comparison on the thresher / thrasher / threshing machine class">
+          <img src="static/img/856_thresher__thrasher__threshing_machine_comparison_grid-cfg-1.0.png" alt="Qualitative comparison on the thresher / thrasher / threshing machine class" loading="lazy" decoding="async">
             <figcaption>ImageNet C2I: <span class="mono">thresher / thrasher / threshing machine</span>.</figcaption>
           </figure>
           <figure class="paper-figure">
-            <img src="static/img/933_cheeseburger_comparison_grid-cfg-1.0.png" alt="Qualitative comparison on the cheeseburger class">
+          <img src="static/img/933_cheeseburger_comparison_grid-cfg-1.0.png" alt="Qualitative comparison on the cheeseburger class" loading="lazy" decoding="async">
             <figcaption>ImageNet C2I: <span class="mono">cheeseburger</span>.</figcaption>
           </figure>
           <figure class="paper-figure">
-            <img src="static/img/953_pineapple__ananas_comparison_grid-cfg-1.0.png" alt="Qualitative comparison on the pineapple / ananas class">
+          <img src="static/img/953_pineapple__ananas_comparison_grid-cfg-1.0.png" alt="Qualitative comparison on the pineapple / ananas class" loading="lazy" decoding="async">
             <figcaption>ImageNet C2I: <span class="mono">pineapple / ananas</span>.</figcaption>
           </figure>
           <figure class="paper-figure">
-            <img src="static/img/997_bolete_comparison_grid-cfg-1.0.png" alt="Qualitative comparison on the bolete class">
+          <img src="static/img/997_bolete_comparison_grid-cfg-1.0.png" alt="Qualitative comparison on the bolete class" loading="lazy" decoding="async">
             <figcaption>ImageNet C2I: <span class="mono">bolete</span>.</figcaption>
           </figure>
         </div>
@@ -461,19 +461,19 @@
 
         <div class="qual-grid" aria-label="Additional GenEval qualitative comparisons">
           <figure class="paper-figure">
-            <img src="static/img/Janus-Pro_1B_comparison_grid_category_color_attr_4x4.png" alt="Qualitative comparison on attribute binding">
+          <img src="static/img/Janus-Pro_1B_comparison_grid_category_color_attr_4x4.png" alt="Qualitative comparison on attribute binding" loading="lazy" decoding="async">
             <figcaption>GenEval: <span class="mono">attribute binding</span>.</figcaption>
           </figure>
           <figure class="paper-figure">
-            <img src="static/img/Janus-Pro_1B_comparison_grid_category_counting_4x4.png" alt="Qualitative comparison on counting">
+          <img src="static/img/Janus-Pro_1B_comparison_grid_category_counting_4x4.png" alt="Qualitative comparison on counting" loading="lazy" decoding="async">
             <figcaption>GenEval: <span class="mono">counting</span>.</figcaption>
           </figure>
           <figure class="paper-figure">
-            <img src="static/img/Janus-Pro_1B_comparison_grid_category_position_4x4.png" alt="Qualitative comparison on position">
+          <img src="static/img/Janus-Pro_1B_comparison_grid_category_position_4x4.png" alt="Qualitative comparison on position" loading="lazy" decoding="async">
             <figcaption>GenEval: <span class="mono">position</span>.</figcaption>
           </figure>
           <figure class="paper-figure">
-            <img src="static/img/Janus-Pro_1B_comparison_grid_category_two_object_4x4.png" alt="Qualitative comparison on two-object combination">
+          <img src="static/img/Janus-Pro_1B_comparison_grid_category_two_object_4x4.png" alt="Qualitative comparison on two-object combination" loading="lazy" decoding="async">
             <figcaption>GenEval: <span class="mono">two-object combination</span>.</figcaption>
           </figure>
         </div>

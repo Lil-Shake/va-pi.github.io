@@ -550,6 +550,10 @@ a:hover {
     width: 100%;
   }
 
+  .paper-figure.figure-half {
+    width: 100%;
+  }
+
   .figure-row {
     grid-template-columns: 1fr;
   }
