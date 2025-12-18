@@ -414,7 +414,7 @@ a:hover {
 /* Qualitative grids */
 .qual-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   gap: 18px;
   margin-top: 14px;
 }
