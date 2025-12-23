@@ -306,6 +306,7 @@ a:hover {
 .table-scroll tbody tr td.hl,
 .table-scroll tbody tr.row-group td.hl {
   background: #d9ecff; /* lightblue (paper-like) */
+  background-color: #d9ecff !important; /* ensure it wins over row-group shading */
   font-weight: 700;
 }
 
