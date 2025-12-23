@@ -302,7 +302,9 @@ a:hover {
   background: transparent;
 }
 
-.table-scroll td.hl {
+.table-scroll td.hl,
+.table-scroll tbody tr td.hl,
+.table-scroll tbody tr.row-group td.hl {
   background: #d9ecff; /* lightblue (paper-like) */
   font-weight: 700;
 }
