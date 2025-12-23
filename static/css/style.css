@@ -123,6 +123,9 @@ a:hover {
 }
 
 .badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
   padding: 10px 16px;
   border-radius: 999px;
   border: 1px solid var(--border);
@@ -131,6 +134,17 @@ a:hover {
   font-weight: 600;
   font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
   box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+}
+
+.badge-icon {
+  width: 16px;
+  height: 16px;
+  flex: 0 0 16px;
+  display: block;
+}
+
+.badge-icon * {
+  vector-effect: non-scaling-stroke;
 }
 
 .badge.secondary {
